@@ -32,40 +32,26 @@
 
 (define (navbar . current-page)
   @html:header{
-    @element/not-empty["nav" class: "navbar navbar-expand-md navbar-dark fixed-top bg-dark"]{
+    @element["nav" class: "navbar navbar-expand-md navbar-dark fixed-top bg-dark"]{
       @div[class: "container"]{
-        @div[class: "navbar-header"]{
-          @button[type: "button"
-                  class: "navbar-toggle collapsed"
-                  data-toggle: "collapse"
-                  data-target: "#navbar"
-                  aria-expanded: "false"
-                  aria-controls: "navbar"]{
-            @span[class: "sr-only"]{Toggle navigation}
-            @span[class: "icon-bar"]
-            @span[class: "icon-bar"]
-            @span[class: "icon-bar"]}
-          @a[class: "navbar-brand" href: (build-path "/" (dict-ref html-navbar-file-table "Home"))]{Home}}
-        @div[id: "navbar" class: "navbar-collapse collapse"]{
-          @ul[class: "nav navbar-nav pull-right"]{
-            @(for/list ([title-pair (in-list html-navbar-file-table)])
-               (cond
-                 [(equal? (car title-pair) (car current-page))
-                  @li[role: "presentation" class: "active"]{@a[href: "#" (car title-pair)]}]
-                 [else @li[role: "presentation"]{@a[href: (build-path "/" (cdr title-pair)) (car title-pair)]}]))}}}}})
+        @a[class: "navbar-brand" href: (build-path "/" (dict-ref html-navbar-file-table "Home"))]{Home}
+        @button[class: "navbar-toggler"
+                type: "button"
+                data-toggle: "collapse"
+                data-target: "#navbarCollapse"
+                aria-controls: "navbarCollapse"
+                aria-expanded: "false"
+                aria-label: "Toggle navigation"]{
+          @span[class: "navbar-toggler-icon"]}}}})
 
 (define (footer #:rest [rest '()] . v)
   (list*
-   @div[class: "footer-color"]{
-     @div[class: "container"]{
-       @element/not-empty["footer" class: "footer float:right"]{
-         @div[class: "copyright"]{
-           @p[style: "float:left"]{Copyright © 2014-2018 Leif Andersen}}
-         @div[class: "pull-right"]{
-           @img[src: "/logo/tiny.png" alt: "Video Logo" height: "25" width: "25"]}}}}
-     @script[src: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"]
-     @script[src: "/js/bootstrap.min.js"]
-     rest))
+   @html:footer[class: "container"]{
+     @div[class: "copyright"]{
+       @p[style: "float:left"]{Copyright © 2014-2018 Leif Andersen}}}
+   @script[src: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"]
+   @script[src: "/js/bootstrap.min.js"]
+   rest))
 
 (define (page #:title title
               #:header-rest [header-rest '()]
