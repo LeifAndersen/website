@@ -6,7 +6,7 @@ address: {street: "440 Huntington Ave."
           room: "308"
           city: "Boston"
           state: "MA"
-          zip: "02151"
+          zip: "02115"
           country: "USA"}
 email: "leif@leif.pl"
 phone: {type: "mobile"
