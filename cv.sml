@@ -104,7 +104,7 @@ papers: [{title: "Super 8 Languages for Making Movies"
  Redex.}}
           url: "http://homes.soic.indiana.edu/jhemann/scheme-14/papers/Jenkins2014.pdf"}
          {title: "Multi-core Parallelization of Abstract Abstract Machines "
-          authors: ["Leif Andersen"
+          author: ["Leif Andersen"
                     "Matthew Might"]
          year: "2013"
          location: {venue: SCHEME}

@@ -16,4 +16,13 @@
        @div[class: "container"]{
         @div[class: "row"]{@(hash-ref i 'title)}
         @div[class: "row"]{
-         @a[href: @(hash-ref i 'url)]{[Publisher PDF]}}}})}}}
+         @strong{Authors:@nbsp}
+         @(string-join (hash-ref i 'author)  ", ")}
+        @div[class: "row"]{
+         @a[href: @(hash-ref i 'url)]{[Publisher PDF]}}
+        @div[class: "row"]{
+         @div[class: "collapse-group"]{
+          @strong{Abstract:@nbsp}
+          @p[class: "collapse" id: "viewabstract"]{@(hash-ref i 'abstract)}
+          @a[class: "btn" data-toggle: "collapse" data-target: "#viewabstract"]{
+           View...}}}}})}}}
