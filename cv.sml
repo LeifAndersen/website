@@ -3,14 +3,13 @@
 name: {first: "Leif"
        last: "Andersen"}
 address: {street: "440 Huntington Ave."
-          room: "308"
           city: "Boston"
           state: "MA"
           zip: "02115"
           country: "USA"}
 email: "leif@leif.pl"
 phone: {type: "mobile"
-        number: "617-XXX-XXXX"}
+        number: "617-373-7920"}
 website: "leif.pl"
 twitter: "LeifAndersen"
 github: "LeifAndersen"
