@@ -22,7 +22,7 @@ before_install:
 - "./install-racket.sh"
 - export PATH="${RACKET_DIR}/bin:${PATH}"
 install:
-- racket website.rkt -b && cd $TRAVIS_BUILD_DIR
+- racket website.rkt -db && cd $TRAVIS_BUILD_DIR
 script:
 - echo 0
 deploy:
