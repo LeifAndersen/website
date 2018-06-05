@@ -11,7 +11,7 @@ git remote add deploy https://github.com/LeifAndersen/leifandersen.github.io.git
 git config --global user.email "website@video-lang.org"
 git config --global user.name "Video Bot"
 
-REV="** deploy videolang/website@$TRAVIS_COMMIT"
+REV="** deploy leifandersen/website@$TRAVIS_COMMIT"
 git fetch deploy
 git reset --soft deploy/master
 git checkout HEAD -- README.md
