@@ -7,6 +7,7 @@
          racket/dict
          racket/runtime-path
          racket/path
+         racket/splicing
          (except-in scribble/html/lang read read-syntax)
          web-server/servlet-env
          web-server/dispatchers/dispatch
@@ -86,11 +87,13 @@
 
 ;; ===================================================================================================
 
-(define-simple-macro (-module-begin body ...)
-   (#%module-begin
-    (require racket/splicing)
-    (splicing-parameterize ([url-roots '(("" "/" abs))])
-      body ...)))
+(define-syntax (-module-begin stx)
+  (syntax-parse stx
+    [(_ body ...)
+   #'(#%module-begin
+      (require racket/splicing)
+      (splicing-parameterize ([url-roots '(("" "/" abs))])
+        body ...))]))
 
 (module reader syntax/module-reader
   #:read scribble:read-inside
