@@ -12,6 +12,7 @@
          web-server/servlet-env
          web-server/dispatchers/dispatch
          (for-syntax racket/base
+                     racket/string
                      racket/dict))
 
 (provide (except-out (all-from-out scribble/html/lang)
@@ -87,13 +88,21 @@
 
 ;; ===================================================================================================
 
+;; Assumes Racket 7, with minimal backwards support for v6.10+
 (define-syntax (-module-begin stx)
   (syntax-parse stx
     [(_ body ...)
-   #'(#%module-begin
-      (require racket/splicing)
-      (splicing-parameterize ([url-roots '(("" "/" abs))])
-        body ...))]))
+     (if (string-prefix? (version) "6.1")
+         ;; Old version of racket, make a best effort attempt.
+         #'(#%module-begin
+            (define orig-url-roots (url-roots))
+            (url-roots '(("" "/" abs)))
+            body ...
+            (url-roots orig-url-roots))
+         #'(#%module-begin
+            (require racket/splicing)
+            (splicing-parameterize ([url-roots '(("" "/" abs))])
+              body ...)))]))
 
 (module reader syntax/module-reader
   #:read scribble:read-inside
