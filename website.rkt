@@ -149,7 +149,7 @@
         (lambda ()
           (dynamic-require f 0))))))
 
-(define deps '(sml))
+(define deps '("sml"))
 
 (define (install-deps)
   (for ([i (in-list deps)])
