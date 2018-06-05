@@ -2,3 +2,7 @@
 \#*
 compiled
 *.html
+*.tex
+*.log
+*.aux
+*.out
