@@ -15,7 +15,7 @@
 
 (provide (except-out (all-from-out scribble/html/lang)
                      #%module-begin)
-         (rename-out [~module-begin #%module-begin])
+         (rename-out [-module-begin #%module-begin])
          read read-syntax get-info
          page)
 
@@ -86,7 +86,7 @@
 
 ;; ===================================================================================================
 
-(define-simple-macro (~module-begin body ...)
+(define-simple-macro (-module-begin body ...)
    (#%module-begin
     (require racket/splicing)
     (splicing-parameterize ([url-roots '(("" "/" abs))])
