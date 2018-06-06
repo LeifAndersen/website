@@ -21,7 +21,8 @@
                      #%module-begin)
          (rename-out [-module-begin #%module-begin])
          read read-syntax get-info
-         page)
+         page
+         ->)
 
 (define (header #:rest [rest '()] . v)
   @head{
@@ -68,6 +69,22 @@
             @navbar[title]
             @html:main[role: "main"]{@content}
             @footer[#:rest footer-rest]}}))
+
+(define (-> . path)
+  (define cv:doc (dynamic-require "cv.sml" 'doc))
+  (define-values (start path*)
+    (if (and (pair? path) (dict? (car path)))
+        (values (car path) (cdr path))
+        (values cv:doc path)))
+  (let loop ([table start]
+             [path path*])
+     (cond [(null? path) table]
+           [(pair? (car path))
+            (loop (dict-ref table (car (car path)) (cdr (car path)))
+                  (cdr path))]
+           [else
+            (loop (dict-ref table (car path))
+                  (cdr path))])))
 
 ;; ===================================================================================================
 

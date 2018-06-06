@@ -11,8 +11,12 @@ email: "leif@leif.pl"
 phone: {type: "mobile"
         number: "617-373-7920"}
 website: "leif.pl"
-twitter: "LeifAndersen"
-github: "LeifAndersen"
+twitter: {name: "@LeifAndersen"
+          url: "https://twitter.com/LeifAndersen"} 
+github: {name: "LeifAndersen"
+         url: "https://github.com/LeifAndersen"}
+lab: {name: "PRL"
+      url: "http://prl.ccs.neu.edu"}
 
 research-statement: {{
  Leif Andersen is a PhD student studying programming languages in Northeastern
