@@ -14,8 +14,8 @@ git config --global user.name "Video Bot"
 REV="** deploy leifandersen/website@$TRAVIS_COMMIT"
 git fetch deploy
 git reset --soft deploy/master
-#git checkout HEAD -- README.md
-#git checkout HEAD -- .gitignore
+git checkout HEAD -- README.md
+git checkout HEAD -- .gitignore
 git add .
 git status
 git commit -m "$REV"
