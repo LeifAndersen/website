@@ -16,7 +16,7 @@ git fetch deploy
 git reset --soft deploy/master
 git checkout HEAD -- README.md
 git checkout HEAD -- .gitignore
-git add .
+git add . -f
 git status
 git commit -m "$REV"
 
