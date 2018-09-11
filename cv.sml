@@ -68,7 +68,7 @@ papers: [{title: "Super 8 Languages for Making Movies"
  in conventional functional languages.}}}
 
          {title: "Feature-Specific Profiling"
-          author: ["Vincent St-Amout"
+          author: ["Vincent St-Amour"
                    "Leif Andersen"
                    "Matthias Felleisen"]
           location: {venue: CC
