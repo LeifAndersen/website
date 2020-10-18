@@ -17,8 +17,6 @@ addons:
     - fonts-linuxlibertine
 
 before_install:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
 - "./install-racket.sh"
 - export PATH="${RACKET_DIR}/bin:${PATH}"
 install:
