@@ -17,7 +17,7 @@
     @h4{Github: @a[href: (-> 'github 'url)]{@(-> 'github 'name)}}
   }}
   @h2{Bio}
-  @a[href: "https://www.ccis.northeastern.edu/people/leif-anderson/"]{On CCIS}
+  @a[href: "https://www.ccis.northeastern.edu/people/leif-andersen/"]{On CCIS}
   @h2{Papers}
   @ul[class: "list-group"]{
    @(for/list ([i (in-list (hash-ref doc 'papers))])

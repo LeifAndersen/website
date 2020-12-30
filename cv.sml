@@ -39,7 +39,20 @@ education: [{location: NEU
              degree: "BS in Computer Engineering"
              year: "2009-2014"}]
 
-papers: [{title: "Super 8 Languages for Making Movies"
+papers: [{title: "Adding interactive visual syntax to textual code"
+          author: ["Leif Andersen"
+                   "Michael Ballantyne"
+                   "Matthias Felleisen"]
+          location: {venue: OOPSLA
+                     series: PACMPL}
+          year: 2020
+          url: "https://doi.org/10.1145/3428290"
+          abstract: {{
+Many programming problems call for turning geometrical thoughts into code: tables, hierarchical structures, nests of objects, trees, forests, graphs, and so on. Linear text does not do justice to such thoughts. But, it has been the dominant programming medium for the past and will remain so for the foreseeable future.
+
+This paper proposes a novel mechanism for conveniently extending textual programming languages with problem-specific visual syntax. It argues the necessity of this language feature, demonstrates the feasibility with a robust prototype, and sketches a design plan for adapting the idea to other languages.}}}
+
+         {title: "Super 8 Languages for Making Movies"
           author: ["Leif Andersen"
                    "Stephen Chang"
                    "Matthias Felleisen"]
