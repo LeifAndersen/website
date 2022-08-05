@@ -32,6 +32,8 @@
         @div[class: "row"]{
          @div[class: "collapse-group"]{
           @strong{Abstract:@nbsp}
-          @p[class: "collapse" id: "viewabstract"]{@(hash-ref i 'abstract)}
-          @a[class: "btn" data-toggle: "collapse" data-target: "#viewabstract"]{
+          @p[class: "collapse"
+             id: (format "viewabstract-~a" i)]{@(hash-ref i 'abstract)}
+          @a[class: "btn" data-toggle: "collapse"
+              data-target: (format "#viewabstract-~a" i)]{
            View...}}}}})}}}
