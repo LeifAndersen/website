@@ -53,7 +53,7 @@
   (list*
    @html:footer[class: "container"]{
      @div[class: "copyright"]{
-       @p[style: "float:left"]{Copyright © 2014-2018 Leif Andersen}}}
+       @p[style: "float:left"]{Copyright © 2014-2022 Leif Andersen}}}
    @script[src: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"]
    @script[src: "/js/bootstrap.min.js"]
    rest))
