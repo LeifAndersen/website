@@ -24,13 +24,13 @@ jobs:
           architecture: 'x64'
           distribution: 'full'
           version: '7.9'
-          packages: 'sml,gregor,frog,honu'
+          packages: 'gregor,frog,honu'
       #- name: Setup upterm session
       #  uses: lhotari/action-upterm@v1
       - name: Build website
         run: |
           sudo apt-get install -y python-pygments fonts-linuxlibertine
-          sudo ./website.rkt -b
+          sudo ./website.rkt -db
       - name: Deploy website
         if: ${{ github.event_name == 'push' }}
         run: |
