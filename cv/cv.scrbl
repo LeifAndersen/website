@@ -20,7 +20,7 @@
           (for/list ([i (in-string str)])
             (dict-ref table i (λ () (string i))))))
 
-@(define (-> #:table [trans-table no-newline-table] . path)
+@(define (-> #:table [trans-table translations-table] . path)
    (define-values (start path*)
      (if (and (pair? path) (dict? (car path)))
          (values (car path) (cdr path))
@@ -50,8 +50,8 @@
 \phone[@(-> 'phone 'type)]{@(-> 'phone 'number)}
 \email{@(-> 'email)}
 \homepage{@(-> 'website)}
-\social[github]{@(-> 'github)}
-\social[twitter]{@(-> 'twitter)}
+\social[github]{@(-> 'github 'url)}
+\social[twitter]{@(-> 'twitter 'url)}
 
 \begin{document}
 \makecvtitle
@@ -80,7 +80,17 @@
                 {\url{@(-> i 'url)}}
         \vspace{6pt}}))
 
+\newpage
+
 \section{Talks}
+@(add-newlines
+  (for/list ([i (in-list (dict-ref cv:doc 'talks))])
+    @~a{\cventry {@(-> i 'year)}@;
+                 {@(-> i 'location)}@;
+                 {@(-> i 'title)}@;
+                 {}@;
+                 {}@;
+                 {\url{@(-> i 'url)}}}))
 
 \section{Teaching}
 @(add-newlines
@@ -103,4 +113,13 @@
                 {}@;
                 {@(-> i 'description)}
         \vspace{6pt}}))
+\section{Service}
+@(add-newlines
+  (for/list ([i (in-list (dict-ref cv:doc 'service))])
+    @~a{\cventry {@(-> i 'year)}@;
+                 {@(-> i 'organization)}@;
+                 {@(-> i 'title)}@;
+                 {}@;
+                 {}@;
+                 {}}))
 \end{document}

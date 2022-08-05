@@ -12,18 +12,18 @@ phone: {type: "mobile"
         number: "617-373-7920"}
 website: "leif.pl"
 twitter: {name: "@LeifAndersen"
-          url: "https://twitter.com/LeifAndersen"} 
+          url: "https://twitter.com/LeifAndersen"}
 github: {name: "LeifAndersen"
          url: "https://github.com/LeifAndersen"}
 lab: {name: "PRL"
       url: "http://prl.ccs.neu.edu"}
 
-research-statement: {{
- Leif Andersen is a PhD student studying programming languages in Northeastern
- University’s College of Computer and Information Science, advised by Professor
- Matthias Felleisen. She is a part of the Programming Research Laboratory (PRL)
- and studies compilers, domain specific languages for writing compilers, and
- performance tools.}}
+research-statement: {{Leif Andersen is a PhD student studying programming
+    languages in Northeastern University’s College of Computer and Information
+    Science, advised by Professor Matthias Felleisen. She is a part of the
+    Programming Research Laboratory (PRL) and studies topics in Programming
+    Languages and Human Computer Interaction. Specifically, she works on
+    domain-specific languages for creating hybrid textual-visual programs.}}
 
 education: [{location: NEU
              year: "2014-Present"
@@ -39,7 +39,7 @@ education: [{location: NEU
              degree: "BS in Computer Engineering"
              year: "2009-2014"}]
 
-papers: [{title: "Adding interactive visual syntax to textual code"
+papers: [{title: "Adding Interactive Visual Syntax to Textual Code"
           author: ["Leif Andersen"
                    "Michael Ballantyne"
                    "Matthias Felleisen"]
@@ -79,7 +79,14 @@ This paper proposes a novel mechanism for conveniently extending textual program
  language cleanly demonstrates how the Racket doctrine naturally leads to the
  creation of language hierarchies, analogous to the hierarchies of modules found
  in conventional functional languages.}}}
-
+         {title: "Feature-Specific Profiling"
+          author: ["Leif Andersen"
+                   "Vincent St-Amour"
+                   "Jan Vitek"
+                   "Matthias Felleisen"]
+          year: 2019
+          location: {venue: TOPLAS}
+          url: "https://doi.org/10.1145/3275519"}
          {title: "Feature-Specific Profiling"
           author: ["Vincent St-Amour"
                    "Leif Andersen"
@@ -137,7 +144,29 @@ This paper proposes a novel mechanism for conveniently extending textual program
          url: "http://www.schemeworkshop.org/2013/papers/Andersen2013.pdf"
                  }]
 
-teaching: [{year: "2016"
+teaching: [{year: "2020"
+            semester: "Spring"
+            position: TA
+            location: NEU
+            number: "CS 4400"
+            name: {{Principles of Programming Languages}}
+            description: {{The course plays two roles. It is primarily an
+introduction to the area of programming languages, the basic concepts that
+govern a software developer’s primary tool. For this role, the course provides
+an idea of what it takes to parse programs, check properties before running
+them, and compile and interpret them to a final answer. For variety, the course
+includes many (though by no means all) linguistic constructs in modern
+languages.
+
+                           The course will, in a secondary role, also reinforce
+the lessons of Fundamentals I and II plus OOD. The study of programming
+languages is the oldest area in computer science, dating back to around 1930. As
+such, the researchers in this area have developed the deepest understanding of
+the development of programs, which is what our current introductory
+curriculum (F I, II, OOD, Sw Dev) teaches. To deepen your understanding of this
+connection, the course will explicitly point back to the introductory
+curriculum.}}}
+           {year: "2016"
             semester: "Fall"
             position: TA
             location: NEU
@@ -204,7 +233,15 @@ teaching: [{year: "2016"
  memory systems, input/output, and parallel machines. Emphasis is placed on
  performance measures and compilation issues.}}}]
 
-software: [{name: "Video"
+software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
+            description: {{Visual and Interactive Syntax realized (VISr) for
+                ClojureScript is a mechanism for extending textual programming
+                languages with visual and interactive language constructs.
+                Programmers are able to edit programs in their preferred IDE,
+                but VISr also ships with elIDE, an IDE designed with VISr in
+                mind.}}
+            url: "https://visr.pl"}
+           {name: "Video"
             description: {{
  Video is a language for making movies. It combines the power of a traditional
  video editor with the capabilities of a full programming language. Video
@@ -218,6 +255,39 @@ software: [{name: "Video"
  or use one of the dozens already available.}}
             url: "https://racket-lang.org/"}]
 
+talks: [{title: "A Language for Making Movies"
+         year: 2018
+         location: BOB
+         url: "https://bobkonf.de/2018/andersen.html"
+         description: {{Video is a language for making movies. It combines the
+             power of a traditional video editor with the capabilities of a full
+             programming language. Video integrates with the Racket ecosystem
+             and extensions for DrRacket to transform it into a non-linear video
+             editor.
+
+             Racket enables developers to create languages (as libraries) to
+             narrow the gap between the terminology of a problem domain and
+             general programming constructs. The development of the video
+             editing language cleanly demonstrates how the Racket doctrine
+             naturally leads to the creation of language hierarchies, analogous
+             to the hierarchies of modules found in conventional functional
+             languages.}}}
+
+        {title: "Movies as Programs: The Story of a Racket"
+         year: 2017
+         location: RacketCon
+         url: "https://con.racket-lang.org/2017/"
+         description: {{Racket is more than a programming language. It is a
+              programming language for making new languages. In fact, it is a
+              programming language for making languages for making movies. Video
+              is a language made from the sweat and parenthesis provided by the
+              Racket ecosystem. It integrates into Racket from concept to final
+              rendering. Come for the video demos, stay for the language tower.}}}]
+
+service: [{title: "Video Co-Chair"
+           organization: SIGPLAN
+           year: "2017-2021"}]
+
 (define PL "Programming Languages")
 (define IC "International Conference")
 (define FP "Functional Programming")
@@ -229,8 +299,14 @@ software: [{name: "Video"
 (define SCHEME {{Scheme and Functional Programming Workshop}})
 (define PACMPL {{Proceedings of the ACM @PL}})
 (define ICFP {{@IC on @FP}})
+(define OOPSLA {{Object-Oriented Programming, Systems, Languages & Applications}})
 (define TOPLAS {{Transactions on @PL and Systems}})
 (define CC {{@IC on Compiler Construction}})
 (define LNCS {{Lecture Notes in @CS}})
 
+(define BOB "BOB Konf")
+(define RacketCon "RacketCon")
+
 (define TA "Teaching Assistant")
+
+(define SIGPLAN "ACM SIGPLAN")
