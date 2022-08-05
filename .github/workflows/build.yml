@@ -30,7 +30,7 @@ jobs:
       - name: Build website
         run: |
           sudo apt-get install -y python-pygments fonts-linuxlibertine
-          sudo ./website -b
+          sudo ./website.rkt -b
       - name: Deploy website
         if: ${{ github.event_name == 'push' }}
         run: |
