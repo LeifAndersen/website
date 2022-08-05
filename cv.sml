@@ -86,7 +86,22 @@ This paper proposes a novel mechanism for conveniently extending textual program
                    "Matthias Felleisen"]
           year: 2019
           location: {venue: TOPLAS}
-          url: "https://doi.org/10.1145/3275519"}
+          url: "https://doi.org/10.1145/3275519"
+          abstract: {{
+             While high-level languages come with significant readability and
+             maintainability benefits, their performance remains difficult to
+             predict. For example, programmers may unknowingly use language
+             features inappropriately, which cause their programs to run slower
+             than expected. To address this issue, we introduce
+             feature-specific profiling, a technique that reports
+             performance costs in terms of linguistic constructs.
+             Festure-specific profilers help programmers find expensive uses of
+             specific features of their language. We describe the architecture
+             of a profiler that implements our approach, explain prototypes of
+             the profiler for two languages with different characteristics and
+             implementation strategies, and provide empirical evidence for the
+             approach's general usefulness as a performance debugging tool.
+         }}}
          {title: "Feature-Specific Profiling"
           author: ["Vincent St-Amour"
                    "Leif Andersen"
