@@ -20,7 +20,8 @@
   @(-> 'research-statement)
   @h2{Papers}
   @ul[class: "list-group"]{
-   @(for/list ([i (in-list (hash-ref doc 'papers))])
+    @(for/list ([i (in-list (hash-ref doc 'papers))]
+                [id (in-naturals)])
       @li[class: "list-group-item"]{
        @div[class: "container"]{
         @div[class: "row"]{@(hash-ref i 'title)}
@@ -33,7 +34,7 @@
          @div[class: "collapse-group"]{
           @strong{Abstract:@nbsp}
           @p[class: "collapse"
-             id: (format "viewabstract-~a" i)]{@(hash-ref i 'abstract)}
+             id: (format "viewabstract-~a" id)]{@(hash-ref i 'abstract)}
           @a[class: "btn" data-toggle: "collapse"
-              data-target: (format "#viewabstract-~a" i)]{
+              data-target: (format "#viewabstract-~a" id)]{
            View...}}}}})}}}
