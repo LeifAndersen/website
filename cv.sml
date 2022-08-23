@@ -26,18 +26,18 @@ research-statement: {{Leif Andersen is a PhD student studying programming
     domain-specific languages for creating hybrid textual-visual programs.}}
 
 education: [{location: NEU
-             year: "2014-Present"
+             year: [2014 "Present"]
              degree: {{PhD in @CS}}
              advisor: "Matthias Felleisen"}
             {location: Utah
              degree: {{MS in @CS}}
-             year: "2012-2014"}
+             year: [2012 2014]}
             {location: Utah
              degree: {{BS in @CS}}
-             year: "2009-2014"}
+             year: [2009 2014]}
             {location: Utah
              degree: "BS in Computer Engineering"
-             year: "2009-2014"}]
+             year: [2009 2014]}]
 
 papers: [{title: "Adding Interactive Visual Syntax to Textual Code"
           author: ["Leif Andersen"
@@ -145,7 +145,7 @@ This paper proposes a novel mechanism for conveniently extending textual program
          {title: "Multi-core Parallelization of Abstract Abstract Machines "
           author: ["Leif Andersen"
                     "Matthew Might"]
-         year: "2013"
+         year: 2013
          location: {venue: SCHEME}
          abstract: {{
  It is straightforward to derive well-known higher-order flow analyses as
@@ -159,7 +159,7 @@ This paper proposes a novel mechanism for conveniently extending textual program
          url: "http://www.schemeworkshop.org/2013/papers/Andersen2013.pdf"
                  }]
 
-teaching: [{year: "2020"
+teaching: [{year: 2020
             semester: "Spring"
             position: TA
             location: NEU
@@ -181,35 +181,35 @@ the development of programs, which is what our current introductory
 curriculum (F I, II, OOD, Sw Dev) teaches. To deepen your understanding of this
 connection, the course will explicitly point back to the introductory
 curriculum.}}}
-           {year: "2016"
+           {year: 2016
             semester: "Fall"
             position: TA
             location: NEU
             number: "CS 2500"
             name: {{Fundamentals of @CS 1}}
             description: ""}
-           {year: "2014"
+           {year: 2014
             semester: "Spring"
             position: TA
             location: Utah
             number: "CS 5961"
             name: "Scripting Language Design and Implementation"
             description: ""}
-           {year: "2013"
+           {year: 2013
             semester: "Fall"
             position: TA
             location: Utah
             number: "CS 3100"
             name: "Models of Computation"
             description: ""}
-           {year: "2012-2013"
+           {year: [2012 2013]
             semester: "Summer"
             position: "Instructor"
             location: Utah
             short-name: "GREAT"
             name: "Graphics & Robotics Exploration with Amazing Technology Summer Camp"
             description: ""}
-           {year: "2012"
+           {year: 2012
             semester: "Spring"
             position: TA
             location: Utah
@@ -237,7 +237,7 @@ curriculum.}}}
  interpret that science and transform it into a functioning product is an art -
  something that you learn only by experience. Hence, this course will have a
  significant portion of design-work, both via HWs and Laboratory experiments.}}}
-           {year: "2011"
+           {year: 2011
             semester: "Fall"
             location: Utah
             number: "CS 3810"
@@ -301,7 +301,10 @@ talks: [{title: "A Language for Making Movies"
 
 service: [{title: "Video Co-Chair"
            organization: SIGPLAN
-           year: "2017-2021"}]
+           year: [2017 2021]}
+          {title: "Long Term Mentor"
+           organization: SIGPLAN
+           year: [2020 "Present"]}]
 
 (define PL "Programming Languages")
 (define IC "International Conference")

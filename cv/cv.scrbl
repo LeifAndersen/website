@@ -36,6 +36,11 @@
             (loop (dict-ref table (car path))
                   (cdr path))])))
 
+@(define (disp-year year)
+   (match year
+     [`(,start ,end)
+      @~a{@|start|-@|end|}]
+     [_ year]))
 
 \documentclass[10pt]{moderncv}
 \moderncvstyle{banking}
@@ -61,7 +66,7 @@
 \section{Education}
 @(add-newlines
   (for/list ([i (in-list (dict-ref cv:doc 'education))])
-    @~a{\cventry{@(-> i 'year)}@;
+    @~a{\cventry{@(disp-year (-> i 'year))}@;
                 {@(-> i 'location)}@;
                 {@(-> i 'degree)}{}@;
                 {@(if (-> i '(advisor . #f))
@@ -116,7 +121,7 @@
 \section{Service}
 @(add-newlines
   (for/list ([i (in-list (dict-ref cv:doc 'service))])
-    @~a{\cventry {@(-> i 'year)}@;
+    @~a{\cventry {@(disp-year (-> i 'year))}@;
                  {@(-> i 'organization)}@;
                  {@(-> i 'title)}@;
                  {}@;
