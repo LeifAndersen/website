@@ -1,4 +1,5 @@
 #lang sml
+#:inputs (hyperlink)
 
 name: {first: "Leif"
        last: "Andersen"}
@@ -7,26 +8,33 @@ address: {street: "440 Huntington Ave."
           state: "MA"
           zip: "02115"
           country: "USA"}
-email: "leif@leif.pl"
+email: "Leif.Andersen@umb.edu"
 phone: {type: "mobile"
-        number: "617-373-7920"}
+        number: "NA"}
 website: "leif.pl"
 twitter: {name: "@LeifAndersen"
           url: "https://twitter.com/LeifAndersen"}
+mastodon: {name: "@leif@toot.leif.pl"
+           url: "https://toot.leif.pl/leif"}
+matrix: {name: "@leifandersen:matrix.org"}
 github: {name: "LeifAndersen"
          url: "https://github.com/LeifAndersen"}
-lab: {name: "PRL"
-      url: "http://prl.ccs.neu.edu"}
+lab: {name: "UMass Boston PL"}
 
-research-statement: {{Leif Andersen is a PhD student studying programming
-    languages in Northeastern University’s College of Computer and Information
-    Science, advised by Professor Matthias Felleisen. She is a part of the
-    Programming Research Laboratory (PRL) and studies topics in Programming
-    Languages and Human Computer Interaction. Specifically, she works on
-    domain-specific languages for creating hybrid textual-visual programs.}}
+(define (university) {{UMass Boston}})
+(define (sub-university) {{College of Science and Mathematics}})
+(define visr-project
+  {url: "https://visr.pl"
+   name: "VISr Project"})
+
+research-statement: {{Leif Andersen is a Postdoc studying programming languages at
+    @university[]'s @sub-university[]. She studies topics in Programming
+    Languages, Systems, and Human Computer Interaction. Specifically, she works
+    on domain-specific languages for creating hybrid textual-visual programs,
+    and is leads the @hyperlink[visr-project].}}
 
 education: [{location: NEU
-             year: [2014 "Present"]
+             year: [2014 2022]
              degree: {{PhD in @CS}}
              advisor: "Matthias Felleisen"}
             {location: Utah
@@ -270,7 +278,11 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
  or use one of the dozens already available.}}
             url: "https://racket-lang.org/"}]
 
-talks: [{title: "A Language for Making Movies"
+talks: [{title: "VISr: Visual and Interactive Syntax"
+         year: 2023
+         location: RacketCon
+         url: "https://www.youtube.com/watch?app=desktop&v=EQCsw0HTO3A"}
+        {title: "A Language for Making Movies"
          year: 2018
          location: BOB
          url: "https://bobkonf.de/2018/andersen.html"

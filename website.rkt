@@ -70,12 +70,15 @@
             @html:main[role: "main"]{@content}
             @footer[#:rest footer-rest]}}))
 
+(define cv:doc (dynamic-require "cv.sml" 'doc))
+(define linked:doc (cv:doc (lambda (data)
+                             @a[href: (dict-ref data 'url)]{
+                               @(dict-ref data 'name)})))
 (define (-> . path)
-  (define cv:doc (dynamic-require "cv.sml" 'doc))
   (define-values (start path*)
     (if (and (pair? path) (dict? (car path)))
         (values (car path) (cdr path))
-        (values cv:doc path)))
+        (values linked:doc path)))
   (let loop ([table start]
              [path path*])
      (cond [(null? path) table]

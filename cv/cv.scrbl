@@ -9,6 +9,9 @@
           racket/runtime-path
           (prefix-in cv: "../cv.sml"))
 
+
+@(define doc (cv:doc (lambda (data) (dict-ref data 'name))))
+
 @(define translations-table
    (hash #\& "\\&"))
 @(define no-newline-table
@@ -24,7 +27,7 @@
    (define-values (start path*)
      (if (and (pair? path) (dict? (car path)))
          (values (car path) (cdr path))
-         (values cv:doc path)))
+         (values doc path)))
    (let loop ([table start]
               [path path*])
      (cond [(and (null? path) (string? table)) (latex-str #:table trans-table table)]
@@ -65,7 +68,7 @@
 
 \section{Education}
 @(add-newlines
-  (for/list ([i (in-list (dict-ref cv:doc 'education))])
+  (for/list ([i (in-list (dict-ref doc 'education))])
     @~a{\cventry{@(disp-year (-> i 'year))}@;
                 {@(-> i 'location)}@;
                 {@(-> i 'degree)}{}@;
@@ -76,7 +79,7 @@
 
 \section{Publications}
 @(add-newlines
-  (for/list ([i (in-list (dict-ref cv:doc 'papers))])
+  (for/list ([i (in-list (dict-ref doc 'papers))])
     @~a{\cventry{@(-> i 'year)}@;
                 {@(-> i 'location 'venue)}@;
                 {@(-> i 'title)}@;
@@ -89,7 +92,7 @@
 
 \section{Talks}
 @(add-newlines
-  (for/list ([i (in-list (dict-ref cv:doc 'talks))])
+  (for/list ([i (in-list (dict-ref doc 'talks))])
     @~a{\cventry {@(-> i 'year)}@;
                  {@(-> i 'location)}@;
                  {@(-> i 'title)}@;
@@ -99,7 +102,7 @@
 
 \section{Teaching}
 @(add-newlines
-  (for/list ([i (in-list (dict-ref cv:doc 'teaching))])
+  (for/list ([i (in-list (dict-ref doc 'teaching))])
     @~a{\cventry{@(if (-> i '(semester . #f))
                       @~a{@(-> i 'semester) @(-> i 'year)}
                       (-> i 'year))}@;
@@ -110,7 +113,7 @@
                 {}}))
 \section{Software}
 @(add-newlines
-  (for/list ([i (in-list (dict-ref cv:doc 'software))])
+  (for/list ([i (in-list (dict-ref doc 'software))])
     @~a{\cventry{}@;
                 {\url{@(-> i 'url)}}@;
                 {@(-> i 'name)}@;
@@ -120,7 +123,7 @@
         \vspace{6pt}}))
 \section{Service}
 @(add-newlines
-  (for/list ([i (in-list (dict-ref cv:doc 'service))])
+  (for/list ([i (in-list (dict-ref doc 'service))])
     @~a{\cventry {@(disp-year (-> i 'year))}@;
                  {@(-> i 'organization)}@;
                  {@(-> i 'title)}@;
