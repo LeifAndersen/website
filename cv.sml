@@ -27,11 +27,12 @@ lab: {name: "UMass Boston PL"}
   {url: "https://visr.pl"
    name: "VISr Project"})
 
-research-statement: {{Leif Andersen is a Postdoc studying programming languages at
+research-statement:
+@list{Leif Andersen is a Postdoc studying programming languages at
     @university[]'s @sub-university[]. She studies topics in Programming
     Languages, Systems, and Human Computer Interaction. Specifically, she works
     on domain-specific languages for creating hybrid textual-visual programs,
-    and leads the @hyperlink[visr-project].}}
+    and leads the @hyperlink[visr-project].}
 
 education: [{location: NEU
              year: [2014 2022]

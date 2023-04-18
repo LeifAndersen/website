@@ -72,9 +72,8 @@
             @footer[#:rest footer-rest]}}))
 
 (define linked:doc (cv:doc (lambda (data)
-                             (xml->string
-                              @a[href: (dict-ref data 'url)]{
-                                @(dict-ref data 'name)}))))
+                             @a[href: (dict-ref data 'url)]{
+                               @(dict-ref data 'name)})))
 (define (-> . path)
   (define-values (start path*)
     (if (and (pair? path) (dict? (car path)))
