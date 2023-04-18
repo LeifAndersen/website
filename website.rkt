@@ -13,6 +13,7 @@
          web-server/dispatchers/dispatch
          pkg
          pkg/lib
+         (prefix-in cv: "cv.sml")
          (for-syntax racket/base
                      racket/string
                      racket/dict))
@@ -70,10 +71,10 @@
             @html:main[role: "main"]{@content}
             @footer[#:rest footer-rest]}}))
 
-(define cv:doc (dynamic-require "cv.sml" 'doc))
 (define linked:doc (cv:doc (lambda (data)
-                             @a[href: (dict-ref data 'url)]{
-                               @(dict-ref data 'name)})))
+                             (xml->string
+                              @a[href: (dict-ref data 'url)]{
+                                @(dict-ref data 'name)}))))
 (define (-> . path)
   (define-values (start path*)
     (if (and (pair? path) (dict? (car path)))

@@ -9,8 +9,8 @@
     @img[src: "/res/Leif.jpg" alt: "Leif Andersen" style: "width:500px"]}
    @div[class: "col-sm"]{
     @h4{Email: @(-> 'email)}
-    @;{@h4{Lab: @a[href: (-> 'lab 'url)]{@(-> 'lab 'name)}}}
-    @h4{Mastodon: @a[href: (-> 'mastodon 'url)]{@(-> 'lab 'name)}}
+    @h4{Lab: @(-> 'lab 'name)}
+    @h4{Mastodon: @a[href: (-> 'mastodon 'url)]{@(-> 'mastodon 'name)}}
     @h4{Twitter: @a[href: (-> 'twitter 'url)]{@(-> 'twitter 'name)}}
     @h4{Github: @a[href: (-> 'github 'url)]{@(-> 'github 'name)}}
   }}
