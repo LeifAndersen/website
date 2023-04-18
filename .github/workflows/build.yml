@@ -18,20 +18,20 @@ jobs:
             ~/.cache/racket
             ~/.local/share/racket
           key: default
-      - name: Install Racket
-        uses: Bogdanp/setup-racket@v1.7
+      - uses: Bogdanp/setup-racket@v1.9
         with:
           architecture: 'x64'
           distribution: 'full'
-          version: '7.9'
-          packages: 'gregor,frog,honu'
+          variant: 'CS'
+          version: '8.6'
       #- name: Setup upterm session
       #  uses: lhotari/action-upterm@v1
       - name: Build website
         run: |
           sudo apt-get update
           sudo apt-get install -y python3-pygments fonts-linuxlibertine
-          sudo ./website.rkt -db
+          sudo raco pkg install --auto deps/
+          sudo ./website.rkt -b
       - name: Deploy website
         if: ${{ github.event_name == 'push' }}
         run: |

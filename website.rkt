@@ -169,23 +169,12 @@
         (lambda ()
           (dynamic-require f 0))))))
 
-(define deps '("sml"))
-
-(define (install-deps)
-  (for ([i (in-list deps)])
-    (cond [(and (hash-has-key? (installed-pkg-table) i))
-           (pkg-update-command #:deps 'search-auto i #:no-setup #t)]
-          [else
-           (pkg-install-command #:deps 'search-auto i #:no-setup #t)])))
-
 (module+ main
   (require racket/cmdline)
   (void
    (command-line
     #:program "Leif Andersen Website"
     #:once-each
-    [("-d" "--deps") "Install the required deps to build the website"
-     (install-deps)]
     [("-b" "--build") "Build Website"
      (build)]
     [("-p" "--preview") "Preview Website"
