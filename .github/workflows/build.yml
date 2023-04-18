@@ -29,7 +29,8 @@ jobs:
       #  uses: lhotari/action-upterm@v1
       - name: Build website
         run: |
-          sudo apt-get install -y python-pygments fonts-linuxlibertine
+          sudp apt-get update
+          sudo apt-get install -y python3-pygments fonts-linuxlibertine
           sudo ./website.rkt -db
       - name: Deploy website
         if: ${{ github.event_name == 'push' }}
