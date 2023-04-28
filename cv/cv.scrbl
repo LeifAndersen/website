@@ -7,10 +7,25 @@
           scribble/core
           scribble/latex-properties
           racket/runtime-path
+          racket/cmdline
+          racket/hash
           (prefix-in cv: "../cv.sml"))
 
+@(define private-extras (make-parameter #f))
 
-@(define doc (cv:doc (lambda (data) (dict-ref data 'name))))
+@(command-line
+  #:once-each
+  [("-p") priv "Additional private data" (private-extras priv)]
+  #:args ()
+  (void))
+
+@(define main-doc (cv:doc (lambda (data) (dict-ref data 'name))))
+@(define doc
+   (if (private-extras)
+       (let ([private-doc (dynamic-require (private-extras) 'doc)])
+         (hash-union main-doc private-doc
+                     #:combine (lambda (a b) b)))
+       main-doc))
 
 @(define translations-table
    (hash #\& "\\&"))

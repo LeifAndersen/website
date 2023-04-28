@@ -1,12 +1,16 @@
 #lang sml
+
+(require racket/string)
+
 #:inputs (hyperlink)
 
 name: {first: "Leif"
        last: "Andersen"}
-address: {street: "440 Huntington Ave."
+address: {name: "McCormack Hall"
+          street: "100 Morrissey Blvd."
           city: "Boston"
           state: "MA"
-          zip: "02115"
+          zip: "02125"
           country: "USA"}
 email: "Leif.Andersen@umb.edu"
 phone: {type: "mobile"
@@ -19,16 +23,16 @@ mastodon: {name: "@leif@toot.leif.pl"
 matrix: {name: "@leifandersen:matrix.org"}
 github: {name: "LeifAndersen"
          url: "https://github.com/LeifAndersen"}
-lab: {name: "UMass Boston PL"}
+lab: {name: (++ UMB PL)}
 
-(define (university) {{UMass Boston}})
+(define (university) UMB)
 (define (sub-university) {{College of Science and Mathematics}})
 (define visr-project
   {url: "https://visr.pl"
    name: "VISr Project"})
 
 research-statement:
-@list{Leif Andersen is a Postdoc studying programming languages at
+@list{Leif Andersen is a postdoc studying programming languages at
     @university[]'s @sub-university[]. She studies topics in Programming
     Languages, Systems, and Human Computer Interaction. Specifically, she works
     on domain-specific languages for creating hybrid textual-visual programs,
@@ -47,6 +51,10 @@ education: [{location: NEU
             {location: Utah
              degree: "BS in Computer Engineering"
              year: [2009 2014]}]
+
+positions: [{location: UMB
+             title: "Postdoc"
+             year: [2022 "Present"]}]
 
 papers: [{title: "Adding Interactive Visual Syntax to Textual Code"
           author: ["Leif Andersen"
@@ -326,6 +334,7 @@ service: [{title: "Video Co-Chair"
 
 (define Utah "University of Utah")
 (define NEU "Northeastern University")
+(define UMB "UMass Boston")
 
 (define SCHEME {{Scheme and Functional Programming Workshop}})
 (define PACMPL {{Proceedings of the ACM @PL}})
@@ -341,3 +350,6 @@ service: [{title: "Video Co-Chair"
 (define TA "Teaching Assistant")
 
 (define SIGPLAN "ACM SIGPLAN")
+
+(define (++ . args)
+  (string-join args))
