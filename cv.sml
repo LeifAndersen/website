@@ -288,7 +288,7 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
             url: "https://racket-lang.org/"}]
 
 talks: [{title: "VISr: Visual and Interactive Syntax"
-         year: 2023
+         year: 2022
          location: RacketCon
          url: "https://www.youtube.com/watch?app=desktop&v=EQCsw0HTO3A"}
         {title: "A Language for Making Movies"
@@ -320,12 +320,27 @@ talks: [{title: "VISr: Visual and Interactive Syntax"
               Racket ecosystem. It integrates into Racket from concept to final
               rendering. Come for the video demos, stay for the language tower.}}}]
 
-service: [{title: "Video Co-Chair"
+dissertation: {title: "Adding Visual and Interactive Syntax to Textual Programs "
+               location: NEU
+               advisor: "Matthias Felleisen"
+               year: 2022
+               url: "https://www2.ccs.neu.edu/racket/pubs/#dissertation-andersen"
+               talk-url: "https://www.youtube.com/watch?v=l0GfMs82PvU"}
+
+service: [{title: "Long Term Mentor"
            organization: SIGPLAN
-           year: [2017 2021]}
-          {title: "Long Term Mentor"
+           year: [2020 "Present"]}
+          {title: "Video Co-Chair"
            organization: SIGPLAN
-           year: [2020 "Present"]}]
+           year: [2017 2021]}]
+
+awards: [{title: "Little Fe Student Cluster Competition Pilot"
+          position: "Winning Team"
+          year: 2012
+          organization: "Supercomputing Conference"}
+         {title: "Computer Engineering Graduating Student of the Year"
+          year: 2013
+          organization: "University of Utah"}]
 
 (define PL "Programming Languages")
 (define IC "International Conference")

@@ -1,4 +1,4 @@
-#lang scribble/text
+#lang curly-fn scribble/text
 
 @(require racket/dict
           racket/list
@@ -9,13 +9,19 @@
           racket/runtime-path
           racket/cmdline
           racket/hash
+          gregor
           (prefix-in cv: "../cv.sml"))
 
 @(define private-extras (make-parameter #f))
+@(define cover-letter (make-parameter #f))
+@(define signature (make-parameter #f))
 
 @(command-line
   #:once-each
-  [("-p") priv "Additional private data" (private-extras priv)]
+  [("-p" "--private") priv "Additional (optional) private data"
+                      (private-extras priv)]
+  [("-c" "--cover") cover "Optional cover letter" (cover-letter cover)]
+  [("-s" "--signature") sig "Optional signature pdf" (signature sig)]
   #:args ()
   (void))
 
@@ -24,11 +30,14 @@
    (if (private-extras)
        (let ([private-doc (dynamic-require (private-extras) 'doc)])
          (hash-union main-doc private-doc
-                     #:combine (lambda (a b) b)))
+                     #:combine (lambda (a b) (if (and (list? a) (list? b))
+                                                 (append a b)
+                                                 b))))
        main-doc))
 
 @(define translations-table
-   (hash #\& "\\&"))
+   (hash #\& "\\&"
+         #\# "\\#"))
 @(define no-newline-table
    (hash-set translations-table #\newline "%\n"))
 
@@ -60,6 +69,9 @@
       @~a{@|start|-@|end|}]
      [_ year]))
 
+@(define (sort-by-year items)
+   (sort items > #:key #{dict-ref % 'year +inf.0}))
+
 \documentclass[10pt]{moderncv}
 \moderncvstyle{banking}
 \moderncvcolor{red}
@@ -75,6 +87,7 @@
 \homepage{@(-> 'website)}
 \social[github]{@(-> 'github 'url)}
 \social[twitter]{@(-> 'twitter 'url)}
+\social[mastodon]{@(-> 'mastodon 'url)}
 
 \begin{document}
 \makecvtitle
@@ -92,18 +105,25 @@
                       "")}@;
                 {}}))
 
+\section{Dissertation}
+\cventry{@(-> 'dissertation 'year)}@;
+        {@(-> 'dissertation 'location)}
+        {@(-> 'dissertation 'title)}@;
+        {}@;
+        {Advisor: @(-> 'dissertation 'advisor)}@;
+        {\url{@(-> 'dissertation 'url)}}
+\vspace{6pt}
+
 \section{Publications}
 @(add-newlines
-  (for/list ([i (in-list (dict-ref doc 'papers))])
-    @~a{\cventry{@(-> i 'year)}@;
+  (for/list ([i (in-list (sort-by-year (-> 'papers)))])
+    @~a{\cventry{@(-> i '(year . "Under Review"))}@;
                 {@(-> i 'location 'venue)}@;
                 {@(-> i 'title)}@;
                 {}@;
                 {}@;
-                {\url{@(-> i 'url)}}
+                {\url{@(-> i '(url . "Under Review"))}}
         \vspace{6pt}}))
-
-\newpage
 
 \section{Talks}
 @(add-newlines
@@ -113,7 +133,8 @@
                  {@(-> i 'title)}@;
                  {}@;
                  {}@;
-                 {\url{@(-> i 'url)}}}))
+                 {\url{@(-> i 'url)}}
+        \vspace{6pt}}))
 
 \section{Teaching}
 @(add-newlines
@@ -136,6 +157,7 @@
                 {}@;
                 {@(-> i 'description)}
         \vspace{6pt}}))
+
 \section{Service}
 @(add-newlines
   (for/list ([i (in-list (dict-ref doc 'service))])
@@ -144,5 +166,40 @@
                  {@(-> i 'title)}@;
                  {}@;
                  {}@;
-                 {}}))
+                 {}
+        \vspace{6pt}}))
+
+\section{Awards}
+@(add-newlines
+  (for/list ([i (in-list (sort-by-year (-> 'awards)))])
+    @~a{\cventry {@(disp-year (-> i 'year))}@;
+                 {@(-> i 'organization)}@;
+                 {@(-> i 'title)}@;
+                 {}@;
+                 {@(-> i '(position . ""))}@;
+                 {}
+                 \vspace{6pt}}))
+
+@(when (cover-letter)
+   (define c:doc (dynamic-require (cover-letter) 'doc))
+   @list{
+     \clearpage
+     \recipient{@(-> c:doc 'team)}@;
+               {@(-> c:doc 'organization)\\@;
+                @(-> c:doc 'address 'street)\\@;
+                @(-> c:doc 'address 'city), @(-> c:doc 'address 'country)}
+     \date{@(~t (today) "d, MMMM y")}
+     \opening{Hello,}
+     \closing{Signed,@(when (signature)
+                        @~a{\\ \vspace{0.4cm}@;
+                            \includegraphics[width=4cm]{@(signature)}@;
+                            \vspace{-1cm}})}
+     \enclosure[Attached]{curriculum vit\ae{}}
+     \makelettertitle
+
+     @(-> c:doc 'letter)
+
+     \makeletterclosing
+   })
+
 \end{document}
