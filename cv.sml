@@ -285,7 +285,23 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
  Racket is a general-purpose programming language as well as the world’s first
  ecosystem for developing and deploying new languages. Make your dream language,
  or use one of the dozens already available.}}
-            url: "https://racket-lang.org/"}]
+            url: "https://racket-lang.org/"}
+           #;{name: "Project Proto"
+            description: {{
+                This capstone project is a flight simulator and strategy video
+                game.
+              }}
+            note: "Available on request."}
+           {name: "Custom Embedded 3D Rendering Pipeline"
+            description: {{
+                Starting as a class project, this repository contains the source
+                code for a custom CPU designed to play a simple 3d game. This
+                project is designed to run on a Xilinx FPGA, it also includes a
+                custom VGA coprocessor, input controller, and instruction
+                assembler.
+              }}
+            url: "https://github.com/LeifAndersen/3710_project"
+            }]
 
 talks: [{title: "VISr: Visual and Interactive Syntax"
          year: 2022

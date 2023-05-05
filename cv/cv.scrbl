@@ -150,12 +150,13 @@
 \section{Software}
 @(add-newlines
   (for/list ([i (in-list (dict-ref doc 'software))])
-    @~a{\cventry{}@;
-                {\url{@(-> i 'url)}}@;
-                {@(-> i 'name)}@;
-                {}@;
-                {}@;
-                {@(-> i 'description)}
+    @list{\cventry{}@;
+                  {@(when (-> i '(url . #f)) @~a{\url{@(-> i 'url)}})@;
+                   @(-> i '(note . ""))}@;
+                  {@(-> i 'name)}@;
+                  {}@;
+                  {}@;
+                  {@(-> i 'description)}
         \vspace{6pt}}))
 
 \section{Service}
