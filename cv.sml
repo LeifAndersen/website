@@ -15,7 +15,7 @@ address: {name: "McCormack Hall"
 email: "Leif.Andersen@umb.edu"
 phone: {type: "mobile"
         number: "NA"}
-website: "leif.pl"
+website: "http://leif.pl"
 twitter: {name: "@LeifAndersen"
           url: "https://twitter.com/LeifAndersen"}
 mastodon: {name: "@leif@toot.leif.pl"
@@ -286,10 +286,10 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
  ecosystem for developing and deploying new languages. Make your dream language,
  or use one of the dozens already available.}}
             url: "https://racket-lang.org/"}
-           #;{name: "Project Proto"
+           {name: "Project Proto"
             description: {{
-                This capstone project is a flight simulator and strategy video
-                game.
+                This capstone project is a combined flight simulator and
+                strategy video game.
               }}
             note: "Available on request."}
            {name: "Custom Embedded 3D Rendering Pipeline"
@@ -346,9 +346,18 @@ dissertation: {title: "Adding Visual and Interactive Syntax to Textual Programs 
 service: [{title: "Long Term Mentor"
            organization: SIGPLAN
            year: [2020 "Present"]}
+          {title: "PC Member"
+           organization: "Scheme Workshop"
+           year: 2023}
           {title: "Video Co-Chair"
            organization: SIGPLAN
-           year: [2017 2021]}]
+           year: [2017 2021]}
+          {title: "PC Member"
+           organization: "Scheme Workshop"
+           year: 2019}
+          {title: "PC Member"
+           organization: "Virtual Machines and Language Implementations"
+           year: 2018}]
 
 awards: [{title: "Little Fe Student Cluster Competition Pilot"
           position: "Winning Team"

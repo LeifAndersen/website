@@ -1,5 +1,4 @@
 #lang curly-fn scribble/text
-
 @(require racket/dict
           racket/list
           racket/format
@@ -14,13 +13,45 @@
 
 @(define private-extras (make-parameter #f))
 @(define cover-letter (make-parameter #f))
+@(define cover-letter-first (make-parameter #f))
 @(define signature (make-parameter #f))
+
+@(define (cover-letter-text first?)
+   (define c:doc (dynamic-require (cover-letter) 'doc))
+   @list{
+     @(if first? "" @list{\clearpage})
+     \recipient{@(-> c:doc 'team)}@;
+     {@(let ([x (-> c:doc '(organization . #f))])
+         (if x @list{@|x|\\} ""))@;
+      @(-> c:doc 'address 'street)\\@;
+      @(-> c:doc 'address 'city), @;
+      @(let ([x @(-> c:doc 'address '(state . #f))])
+         (if x @list{@|x|, } ""))@;
+      @(let ([x @(-> c:doc 'address '(zip . #f))])
+         (if x @list{@|x|\\} ""))
+      @(-> c:doc 'address 'country)}
+    \date{@(~t (today) "d, MMMM y")}
+    \opening{Hello,}
+    \closing{Signed,@(when (signature)
+      @~a{\\ \vspace{0.4cm}@;
+        \includegraphics[width=4cm]{@(signature)}@;
+        \vspace{-1cm}})}
+    \enclosure[Attached]{curriculum vit\ae{}}
+    \makelettertitle
+
+    @(-> c:doc 'letter)
+
+    \makeletterclosing
+    @(if first? @list{\clearpage} "")
+  })
 
 @(command-line
   #:once-each
   [("-p" "--private") priv "Additional (optional) private data"
                       (private-extras priv)]
   [("-c" "--cover") cover "Optional cover letter" (cover-letter cover)]
+  [("-f" "--cover-first") "Put cover letter at the start of document"
+                          (cover-letter-first #t)]
   [("-s" "--signature") sig "Optional signature pdf" (signature sig)]
   #:args ()
   (void))
@@ -37,7 +68,10 @@
 
 @(define translations-table
    (hash #\& "\\&"
-         #\# "\\#"))
+         #\# "\\#"
+         #\$ "\\$"
+         #\_ "\\_"
+         #\% "\\%"))
 @(define no-newline-table
    (hash-set translations-table #\newline "%\n"))
 
@@ -90,6 +124,10 @@
 \social[mastodon]{@(-> 'mastodon 'url)}
 
 \begin{document}
+
+@(when (and (cover-letter) (cover-letter-first))
+   (cover-letter-text #t))
+
 \makecvtitle
 \section{Research Highlights}
 @(-> 'research-statement)
@@ -181,26 +219,7 @@
                  {}
                  \vspace{6pt}}))
 
-@(when (cover-letter)
-   (define c:doc (dynamic-require (cover-letter) 'doc))
-   @list{
-     \clearpage
-     \recipient{@(-> c:doc 'team)}@;
-               {@(-> c:doc 'organization)\\@;
-                @(-> c:doc 'address 'street)\\@;
-                @(-> c:doc 'address 'city), @(-> c:doc 'address 'country)}
-     \date{@(~t (today) "d, MMMM y")}
-     \opening{Hello,}
-     \closing{Signed,@(when (signature)
-                        @~a{\\ \vspace{0.4cm}@;
-                            \includegraphics[width=4cm]{@(signature)}@;
-                            \vspace{-1cm}})}
-     \enclosure[Attached]{curriculum vit\ae{}}
-     \makelettertitle
-
-     @(-> c:doc 'letter)
-
-     \makeletterclosing
-   })
+@(when (and (cover-letter) (not (cover-letter-first)))
+  (cover-letter-text #f))
 
 \end{document}
