@@ -219,6 +219,21 @@
                  {}
                  \vspace{6pt}}))
 
+@(if (-> '(references . #f))
+   @list{
+     \section{References}
+     @(add-newlines
+       (for/list ([i (in-list (-> 'references))])
+         @~a{\cventry {}@;
+                      {@(-> i 'role)}@;
+                      {@(-> i 'name)}@;
+                      {}@;
+                      {}@;
+                      {\href{mailto:@(-> i 'email)}{@(-> i 'email)}}
+                      \vspace{6pt}}))}
+   "")
+
+
 @(when (and (cover-letter) (not (cover-letter-first)))
   (cover-letter-text #f))
 
