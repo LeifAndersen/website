@@ -118,10 +118,10 @@
         {@(-> 'address 'country)}
 \phone[@(-> 'phone 'type)]{@(-> 'phone 'number)}
 \email{@(-> 'email)}
-\homepage{@(-> 'website)}
-\social[github]{@(-> 'github 'url)}
-\social[twitter]{@(-> 'twitter 'url)}
-\social[mastodon]{@(-> 'mastodon 'url)}
+\homepage{@(-> 'website 'name)}
+\social[github]{@(-> 'github 'name)}
+\social[twitter]{@(-> 'twitter 'name)}
+\social[mastodon]{@(-> 'mastodon 'name)}
 
 \begin{document}
 
@@ -233,6 +233,13 @@
                       \vspace{6pt}}))}
    "")
 
+@(if (-> '(additional-experience . #f))
+     @list{
+       \section{Additional Experience}
+       @(add-newlines
+         (for/list ([i (in-list (-> 'additional-experience))])
+           @list{\cvlistitem{@i}}))}
+     "")
 
 @(when (and (cover-letter) (not (cover-letter-first)))
   (cover-letter-text #f))

@@ -15,7 +15,8 @@ address: {name: "McCormack Hall"
 email: "Leif.Andersen@umb.edu"
 phone: {type: "mobile"
         number: "NA"}
-website: "http://leif.pl"
+website: {name: "leifandersen.net"
+          url: "http://leif.pl"}
 twitter: {name: "@LeifAndersen"
           url: "https://twitter.com/LeifAndersen"}
 mastodon: {name: "@leif@toot.leif.pl"
@@ -280,12 +281,27 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
  integrates with the Racket ecosystem and extensions for DrRacket to transform
  it into a non-linear video editor.}}
             url: "https://lang.video/"}
+           {name: "S-Markup Language"
+             description: {{
+                 A language for creating human readable NoSQL like data, similar
+                 YAML or TOML. Native to the Racket, Scribble, and \LaTeX{}
+                 environments. Used for everything from tracking student grades,
+                 to writing this CV.}}
+            url: "https://github.com/LeifAndersen/racket-sml"}
            {name: "Racket"
             description: {{
  Racket is a general-purpose programming language as well as the world’s first
  ecosystem for developing and deploying new languages. Make your dream language,
  or use one of the dozens already available.}}
             url: "https://racket-lang.org/"}
+           {name: "Nanopass Compiler Framework"
+            description: {{
+                Nanopass is a DSL for compiler construction. It uses polytypic
+                programming (sometimes called generic programming) to make
+                many small compiler passes, while keeping typing information
+                useful to compilers. This is the DSL that the Chez Scheme
+                Compiler uses.}}
+            url: "http://nanopass.org/"}
            {name: "Project Proto"
             description: {{
                 This capstone project is a combined flight simulator and
