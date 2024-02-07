@@ -103,8 +103,13 @@
       @~a{@|start|-@|end|}]
      [_ year]))
 
+@(define (final-year year)
+   (match year
+     [`(,start ,end) end]
+     [_ year]))
+
 @(define (sort-by-year items)
-   (sort items > #:key #{dict-ref % 'year +inf.0}))
+   (sort items > #:key #{final-year (dict-ref % 'year +inf.0)}))
 
 \documentclass[10pt]{moderncv}
 \moderncvstyle{banking}
@@ -122,6 +127,7 @@
 \social[github]{@(-> 'github 'name)}
 \social[twitter]{@(-> 'twitter 'name)}
 \social[mastodon]{@(-> 'mastodon 'name)}
+\social[linkedin][@(-> 'linkedin 'url)]{@(-> 'linkedin 'name)}
 
 \begin{document}
 
@@ -131,6 +137,18 @@
 \makecvtitle
 \section{Research Highlights}
 @(-> 'research-statement)
+
+@(if (-> '(additional-experience . #f))
+     @list{\section{Previous Positions}
+           @(add-newlines
+             (for/list ([i (in-list (sort-by-year (-> 'previous-positions)))])
+               @~a{\cventry{@(disp-year (-> i 'year))}@;
+                           {@(-> i 'location)}@;
+                           {@(-> i 'role)}@;
+                           {}@;
+                           {}@;
+                           {}}))}
+     "")
 
 \section{Education}
 @(add-newlines

@@ -24,6 +24,8 @@ mastodon: {name: "@leif@toot.leif.pl"
 matrix: {name: "@leifandersen:matrix.org"}
 github: {name: "LeifAndersen"
          url: "https://github.com/LeifAndersen"}
+linkedin: {name: "Leif Andersen"
+           url: "www.linkedin.com/in/leif-andersen-b097b62a9/"}
 lab: {name: (++ UMB PL)}
 
 (define (university) UMB)
@@ -352,7 +354,7 @@ talks: [{title: "VISr: Visual and Interactive Syntax"
               Racket ecosystem. It integrates into Racket from concept to final
               rendering. Come for the video demos, stay for the language tower.}}}]
 
-dissertation: {title: "Adding Visual and Interactive Syntax to Textual Programs "
+dissertation: {title: "Adding Visual and Interactive Syntax to Textual Programs"
                location: NEU
                advisor: "Matthias Felleisen"
                year: 2022
