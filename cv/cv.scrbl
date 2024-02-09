@@ -142,12 +142,14 @@
      @list{\section{Previous Positions}
            @(add-newlines
              (for/list ([i (in-list (sort-by-year (-> 'previous-positions)))])
-               @~a{\cventry{@(disp-year (-> i 'year))}@;
+               @list{\cventry{@(disp-year (-> i 'year))}@;
                            {@(-> i 'location)}@;
                            {@(-> i 'role)}@;
                            {}@;
                            {}@;
-                           {}}))}
+                           {@(for/list ([i (in-list (-> i 'highlights))])
+                               @list{\cvlistitem{@i}})}
+                     \vspace{6pt}}))}
      "")
 
 \section{Education}
@@ -169,6 +171,18 @@
         {Advisor: @(-> 'dissertation 'advisor)}@;
         {\url{@(-> 'dissertation 'url)}}
 \vspace{6pt}
+
+\section{Major Software Projects}
+@(add-newlines
+(for/list ([i (in-list (dict-ref doc 'software))])
+@list{\cventry{}@;
+  {@(when (-> i '(url . #f)) @~a{\url{@(-> i 'url)}})@;
+    @(-> i '(note . ""))}@;
+  {@(-> i 'name)}@;
+  {}@;
+  {}@;
+  {@(-> i 'description)}
+  \vspace{6pt}}))
 
 \section{Publications}
 @(add-newlines
@@ -203,17 +217,6 @@
                 {}@;
                 {}@;
                 {}}))
-\section{Software}
-@(add-newlines
-  (for/list ([i (in-list (dict-ref doc 'software))])
-    @list{\cventry{}@;
-                  {@(when (-> i '(url . #f)) @~a{\url{@(-> i 'url)}})@;
-                   @(-> i '(note . ""))}@;
-                  {@(-> i 'name)}@;
-                  {}@;
-                  {}@;
-                  {@(-> i 'description)}
-        \vspace{6pt}}))
 
 \section{Service}
 @(add-newlines
@@ -236,6 +239,98 @@
                  {@(-> i '(position . ""))}@;
                  {}
                  \vspace{6pt}}))
+
+\section{High Proficiency}
+\subsection{Languages}
+@(add-newlines
+  (reverse
+   (let loop ([acc '()]
+              [items (sort (-> 'programming-languages) string<=?)])
+     (match items
+       [`() acc]
+       [`(,a)
+        (cons @~a{\cvitem{}{
+           \begin{minipage}[t]{0.33\textwidth}
+             \begin{itemize}
+             \item @(latex-str a)
+             \end{itemize}
+           \end{minipage}}} acc)]
+       [`(,a ,b)
+        (cons @~a{\cvitem{}{
+           \begin{minipage}[t]{0.33\textwidth}
+             \begin{itemize}
+             \item @(latex-str a)
+             \end{itemize}
+           \end{minipage}
+           \begin{minipage}[t]{0.33\textwidth}
+             \begin{itemize}
+             \item @(latex-str b)
+             \end{itemize}
+           \end{minipage}}} acc)]
+       [`(,a ,b ,c ,rst ...)
+        (loop (cons @~a{\cvitem{}{
+            \begin{minipage}[t]{0.33\textwidth}
+              \begin{itemize}
+              \item @(latex-str a)
+              \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{0.33\textwidth}
+              \begin{itemize}
+              \item @(latex-str b)
+              \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{0.33\textwidth}
+              \begin{itemize}
+              \item @(latex-str c)
+              \end{itemize}
+            \end{minipage}}} acc) rst)
+        ]))))
+Additional languages available on request.
+\subsection{Tools and Environments}
+@(add-newlines
+  (reverse
+   (let loop ([acc '()]
+              [items (sort (-> 'tools) string<=?)])
+     (match items
+       [`() acc]
+       [`(,a)
+        (cons @~a{\cvitem{}{
+           \begin{minipage}[t]{0.33\textwidth}
+             \begin{itemize}
+             \item @(latex-str a)
+             \end{itemize}
+           \end{minipage}}} acc)]
+       [`(,a ,b)
+        (cons @~a{\cvitem{}{
+           \begin{minipage}[t]{0.33\textwidth}
+             \begin{itemize}
+             \item @(latex-str a)
+             \end{itemize}
+           \end{minipage}
+           \begin{minipage}[t]{0.33\textwidth}
+             \begin{itemize}
+             \item @(latex-str b)
+             \end{itemize}
+           \end{minipage}}} acc)]
+       [`(,a ,b ,c ,rst ...)
+        (loop (cons @~a{\cvitem{}{
+            \begin{minipage}[t]{0.33\textwidth}
+              \begin{itemize}
+              \item @(latex-str a)
+              \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{0.33\textwidth}
+              \begin{itemize}
+              \item @(latex-str b)
+              \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{0.33\textwidth}
+              \begin{itemize}
+              \item @(latex-str c)
+              \end{itemize}
+            \end{minipage}}} acc) rst)
+        ]))))
+Additional tools and environments available on request.
 
 @(if (-> '(references . #f))
    @list{

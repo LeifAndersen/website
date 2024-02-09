@@ -35,8 +35,9 @@ lab: {name: (++ UMB PL)}
    name: "VISr Project"})
 
 research-statement:
-@list{Leif Andersen is a postdoc studying programming languages at
-    @university[]'s @sub-university[]. She studies topics in Programming
+@list{Leif Andersen is a postdoc doing research on programming language
+    and compiler development at
+    @university[]'s @sub-university[]. Some topics of inteerst include
     Languages, Systems, and Human Computer Interaction. Specifically, she works
     on domain-specific languages for creating hybrid textual-visual programs,
     and leads the @hyperlink[visr-project].}
