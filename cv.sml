@@ -276,13 +276,15 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 Programmers are able to edit programs in their preferred IDE,
                 but VISr also ships with elIDE, an IDE designed with VISr in
                 mind.}}
-            url: "https://visr.pl"}
+            url: "https://visr.pl"
+            contribution: ["Project Lead" "Design and implementation"]}
            {name: "Video"
             description: {{
  Video is a language for making movies. It combines the power of a traditional
  video editor with the capabilities of a full programming language. Video
  integrates with the Racket ecosystem and extensions for DrRacket to transform
  it into a non-linear video editor.}}
+            contribution: ["Project Lead" "Design and implementation"]
             url: "https://lang.video/"}
            {name: "S-Markup Language"
              description: {{
@@ -290,13 +292,17 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                  YAML or TOML. Native to the Racket, Scribble, and \LaTeX{}
                  environments. Used for everything from tracking student grades,
                  to writing this CV.}}
-            url: "https://github.com/LeifAndersen/racket-sml"}
+             url: "https://github.com/LeifAndersen/racket-sml"
+             contribution: ["Project Lead" "Design and implementation"]}
            {name: "Racket"
             description: {{
  Racket is a general-purpose programming language as well as the world’s first
  ecosystem for developing and deploying new languages. Make your dream language,
  or use one of the dozens already available.}}
-            url: "https://racket-lang.org/"}
+            url: "https://racket-lang.org/"
+            contribution: ["Core Contributor"
+                           "Compiler Development"
+                           "IDE Development"]}
            {name: "Nanopass Compiler Framework"
             description: {{
                 Nanopass is a DSL for compiler construction. It uses polytypic
@@ -304,12 +310,15 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 many small compiler passes, while keeping typing information
                 useful to compilers. This is the DSL that the Chez Scheme
                 Compiler uses.}}
+            contribution: ["Organizational Infrastructure"
+                           "Racket Port"]
             url: "http://nanopass.org/"}
            {name: "Project Proto"
             description: {{
                 This capstone project is a combined flight simulator and
                 strategy video game.
               }}
+            contribution: ["Team Member"]
             note: "Available on request."}
            {name: "Custom Embedded 3D Rendering Pipeline"
             description: {{
@@ -319,6 +328,7 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 custom VGA coprocessor, input controller, and instruction
                 assembler.
               }}
+            contribution: ["Team Member"]
             url: "https://github.com/LeifAndersen/3710_project"
             }]
 

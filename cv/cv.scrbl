@@ -15,6 +15,7 @@
 @(define cover-letter (make-parameter #f))
 @(define cover-letter-first (make-parameter #f))
 @(define signature (make-parameter #f))
+@(define extended (make-parameter #f))
 
 @(define (cover-letter-text first?)
    (define c:doc (dynamic-require (cover-letter) 'doc))
@@ -53,6 +54,7 @@
   [("-f" "--cover-first") "Put cover letter at the start of document"
                           (cover-letter-first #t)]
   [("-s" "--signature") sig "Optional signature pdf" (signature sig)]
+  [("-e" "--extended") "Extended Items" (extended #t)]
   #:args ()
   (void))
 
@@ -174,15 +176,20 @@
 
 \section{Major Software Projects}
 @(add-newlines
-(for/list ([i (in-list (dict-ref doc 'software))])
-@list{\cventry{}@;
-  {@(when (-> i '(url . #f)) @~a{\url{@(-> i 'url)}})@;
-    @(-> i '(note . ""))}@;
-  {@(-> i 'name)}@;
-  {}@;
-  {}@;
-  {@(-> i 'description)}
-  \vspace{6pt}}))
+  (for/list ([i (in-list (dict-ref doc 'software))])
+    @list{\cventry{}@;
+                  {@(when (-> i '(url . #f)) @~a{\url{@(-> i 'url)}})@;
+                   @(-> i '(note . ""))}@;
+                  {@(-> i 'name)}@;
+                  {}@;
+                  {}@;
+                  {\cvitem{}{@(-> i 'description)}
+                   @(if (-> i '(contribution . #f))
+                        @(add-newlines
+                          (for/list ([i (in-list (-> i 'contribution))])
+                            @list{\cvlistitem{@i}}))
+                        "")}
+          \vspace{6pt}}))
 
 \section{Publications}
 @(add-newlines
@@ -195,6 +202,8 @@
                 {\url{@(-> i '(url . "Under Review"))}}
         \vspace{6pt}}))
 
+@(if (extended)
+     @list{
 \section{Talks}
 @(add-newlines
   (for/list ([i (in-list (dict-ref doc 'talks))])
@@ -239,9 +248,13 @@
                  {@(-> i '(position . ""))}@;
                  {}
                  \vspace{6pt}}))
+} "")
 
-\section{High Proficiency}
-\subsection{Languages}
+@(if (and (-> '(programming-languages . #f))
+          (-> '(tools . #f)))
+     @list{
+     \section{High Proficiency}
+     \subsection{Languages}
 @(add-newlines
   (reverse
    (let loop ([acc '()]
@@ -285,7 +298,6 @@
               \end{itemize}
             \end{minipage}}} acc) rst)
         ]))))
-Additional languages available on request.
 \subsection{Tools and Environments}
 @(add-newlines
   (reverse
@@ -330,7 +342,8 @@ Additional languages available on request.
               \end{itemize}
             \end{minipage}}} acc) rst)
         ]))))
-Additional tools and environments available on request.
+}
+"")
 
 @(if (-> '(references . #f))
    @list{
