@@ -116,7 +116,7 @@
 \documentclass[10pt]{moderncv}
 \moderncvstyle{banking}
 \moderncvcolor{red}
-\usepackage[scale=0.75]{geometry}
+\usepackage[scale=0.75,top=2cm, bottom=2cm]{geometry}
 
 \name{@(-> 'name 'first)}{@(-> 'name 'last)}
 \address{@(-> 'address 'street)}%
@@ -140,19 +140,20 @@
 \section{Research Highlights}
 @(-> 'research-statement)
 
-@(if (-> '(additional-experience . #f))
+@(if (-> '(positions . #f))
      @list{\section{Previous Positions}
-           @(add-newlines
-             (for/list ([i (in-list (sort-by-year (-> 'previous-positions)))])
-               @list{\cventry{@(disp-year (-> i 'year))}@;
-                           {@(-> i 'location)}@;
-                           {@(-> i 'role)}@;
-                           {}@;
-                           {}@;
-                           {@(for/list ([i (in-list (-> i 'highlights))])
-                               @list{\cvlistitem{@i}})}
-                     \vspace{6pt}}))}
+                   @(add-newlines
+                     (for/list ([i (in-list (sort-by-year (-> 'previous-positions)))])
+                       @list{\cventry{@(disp-year (-> i 'year))}@;
+                                     {@(-> i 'location)}@;
+                                     {@(-> i 'role)}@;
+                                     {}@;
+                                     {}@;
+                                     {@(for/list ([i (in-list (-> i 'highlights))])
+                                         @list{\cvlistitem{@i}})}
+                                     \vspace{6pt}}))}
      "")
+
 
 \section{Education}
 @(add-newlines
@@ -163,16 +164,9 @@
                 {@(if (-> i '(advisor . #f))
                       (format "Advisor: ~a" (-> i 'advisor))
                       "")}@;
-                {}}))
-
-\section{Dissertation}
-\cventry{@(-> 'dissertation 'year)}@;
-        {@(-> 'dissertation 'location)}
-        {@(-> 'dissertation 'title)}@;
-        {}@;
-        {Advisor: @(-> 'dissertation 'advisor)}@;
-        {\url{@(-> 'dissertation 'url)}}
-\vspace{6pt}
+                {@(if (-> i '(dissertation . #f))
+                      (format "Dissertation: ~a" (-> i 'dissertation))
+                      "")}}))
 
 \section{Major Software Projects}
 @(add-newlines
@@ -183,7 +177,7 @@
                   {@(-> i 'name)}@;
                   {}@;
                   {}@;
-                  {\cvitem{}{@(-> i 'description)}
+                  {@;\cvitem{}{@(-> i 'description)}
                    @(if (-> i '(contribution . #f))
                         @(add-newlines
                           (for/list ([i (in-list (-> i 'contribution))])
@@ -192,6 +186,13 @@
           \vspace{6pt}}))
 
 \section{Publications}
+\cventry{@(-> 'dissertation 'year)}@;
+        {@(-> 'dissertation 'location)}
+        {\emph{Dissertation:} @(-> 'dissertation 'title)}@;
+        {}@;
+        {Advisor: @(-> 'dissertation 'advisor)}@;
+        {\url{@(-> 'dissertation 'url)}}
+\vspace{6pt}
 @(add-newlines
   (for/list ([i (in-list (sort-by-year (-> 'papers)))])
     @~a{\cventry{@(-> i '(year . "Under Review"))}@;

@@ -37,24 +37,26 @@ lab: {name: (++ UMB PL)}
 research-statement:
 @list{Leif Andersen is a postdoc doing research on programming language
     and compiler development at
-    @university[]'s @sub-university[]. Some topics of inteerst include
+    @university[]'s @sub-university[]. Some topics of interest include
     Languages, Systems, and Human Computer Interaction. Specifically, she works
     on domain-specific languages for creating hybrid textual-visual programs,
     and leads the @hyperlink[visr-project].}
 
 education: [{location: NEU
              year: [2014 2022]
-             degree: {{PhD in @CS}}
+             degree: {{PhD in @|CS|, emphasis on @PL}}
+             dissertation: dissertation-title
              advisor: "Matthias Felleisen"}
             {location: Utah
              degree: {{MS in @CS}}
              year: [2012 2014]}
             {location: Utah
-             degree: {{BS in @CS}}
+             degree: {{BS in @CS and Computer Engineering}}
              year: [2009 2014]}
-            {location: Utah
+            @;{location: Utah
              degree: "BS in Computer Engineering"
-             year: [2009 2014]}]
+             year: [2009 2014]}
+           ]
 
 positions: [{location: UMB
              title: "Postdoc"
@@ -273,18 +275,31 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
             description: {{Visual and Interactive Syntax realized (VISr) for
                 ClojureScript is a mechanism for extending textual programming
                 languages with visual and interactive language constructs.
+                Similar to notebook programming, but with the semantics capable
+                of engineering large programs.
                 Programmers are able to edit programs in their preferred IDE,
                 but VISr also ships with elIDE, an IDE designed with VISr in
                 mind.}}
             url: "https://visr.pl"
-            contribution: ["Project Lead" "Design and implementation"]}
-           {name: "Video"
+            contribution: [{{
+                Designed and implemented a mechanism for extending textual
+                programming languages with visual and interactive language
+                constructs.}}
+            {{Similar to notebook programming, but with the
+                semantics capable of engineering large programs.}}
+            {{Used by multiple programmers.}}]}
+           {name: "Video Programming Language"
             description: {{
  Video is a language for making movies. It combines the power of a traditional
  video editor with the capabilities of a full programming language. Video
  integrates with the Racket ecosystem and extensions for DrRacket to transform
  it into a non-linear video editor.}}
-            contribution: ["Project Lead" "Design and implementation"]
+            contribution: [{{Designed an implemented a language for making
+                videos.}}
+            {{Created an integration with the Racket and FFmpeg ecosystems.}}
+            {{Created IDE extensions for DrRacket for limited NLVE capabilities.}}
+            {{Used to record the videos for SIGPLAN conferences.}}
+            {{Used by roughly a thousand student for an introductory CS course.}}]
             url: "https://lang.video/"}
            {name: "S-Markup Language"
              description: {{
@@ -293,16 +308,25 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                  environments. Used for everything from tracking student grades,
                  to writing this CV.}}
              url: "https://github.com/LeifAndersen/racket-sml"
-             contribution: ["Project Lead" "Design and implementation"]}
+             contribution: [
+             {{Designed and implemented a language for creating human readable
+                 NoSQL like data, similar YAML or TOML.}}
+             {{Used to demonstrate the power of Racket's metaprogramming
+                 capabilities.}}
+             {{Used to store everything from student grades, to even the
+                 creation of this CV.}}]}
            {name: "Racket"
             description: {{
  Racket is a general-purpose programming language as well as the world’s first
  ecosystem for developing and deploying new languages. Make your dream language,
  or use one of the dozens already available.}}
             url: "https://racket-lang.org/"
-            contribution: ["Core Contributor"
-                           "Compiler Development"
-                           "IDE Development"]}
+            contribution: [{{Served as a core contributor, including
+                participating in high level design discussions and onboarding
+                new contributors.}}
+            {{Performed initial research on self-hosted compiler.}}
+            {{Heavy use testing of macro system.}}
+            {{Creation of development tooling surrounding the language and IDE.}}]}
            {name: "Nanopass Compiler Framework"
             description: {{
                 Nanopass is a DSL for compiler construction. It uses polytypic
@@ -310,17 +334,20 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 many small compiler passes, while keeping typing information
                 useful to compilers. This is the DSL that the Chez Scheme
                 Compiler uses.}}
-            contribution: ["Organizational Infrastructure"
-                           "Racket Port"]
+            contribution: [{{Create the Racket port for Nanopass.}}
+                           {{Used fork to create prototype self-hosted Racket
+                               compiler.}}
+                           {{Setup the Organizational Infrastructure for future
+                               forks and contributions to Naneopass.}}]
             url: "http://nanopass.org/"}
-           {name: "Project Proto"
+           @;{name: "Project Proto"
             description: {{
                 This capstone project is a combined flight simulator and
                 strategy video game.
               }}
             contribution: ["Team Member"]
             note: "Available on request."}
-           {name: "Custom Embedded 3D Rendering Pipeline"
+           @;{name: "Custom Embedded 3D Rendering Pipeline"
             description: {{
                 Starting as a class project, this repository contains the source
                 code for a custom CPU designed to play a simple 3d game. This
@@ -365,7 +392,10 @@ talks: [{title: "VISr: Visual and Interactive Syntax"
               Racket ecosystem. It integrates into Racket from concept to final
               rendering. Come for the video demos, stay for the language tower.}}}]
 
-dissertation: {title: "Adding Visual and Interactive Syntax to Textual Programs"
+@(define dissertation-title
+   "Adding Visual and Interactive Syntax to Textual Programs")
+
+dissertation: {title: @dissertation-title
                location: NEU
                advisor: "Matthias Felleisen"
                year: 2022
