@@ -206,7 +206,7 @@
 
 \section{Talks}
 @(add-newlines
-  (for/list ([i (in-list (dict-ref doc 'talks))])
+  (for/list ([i (in-list (sort-by-year (-> 'talks)))])
     @~a{\cventry {@(-> i 'year)}@;
                  {@(-> i 'location)}@;
                  {@(-> i 'title)}@;
