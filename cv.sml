@@ -28,24 +28,47 @@ linkedin: {name: "Leif Andersen"
            url: "www.linkedin.com/in/leif-andersen-b097b62a9/"}
 lab: {name: (++ UMB PL)}
 
+(define PL "Programming Languages")
+(define IC "International Conference")
+(define FP "Functional Programming")
+(define CS "Computer Science")
+
+(define Utah "University of Utah")
+(define NEU "Northeastern University")
+(define UMB "UMass Boston")
+
+(define SCHEME {{Scheme and Functional Programming Workshop}})
+(define PACMPL {{Proceedings of the ACM @PL}})
+(define ICFP {{@IC on @FP}})
+(define OOPSLA {{Object-Oriented Programming, Systems, Languages & Applications}})
+(define TOPLAS {{Transactions on @PL and Systems}})
+(define CC {{@IC on Compiler Construction}})
+(define LNCS {{Lecture Notes in @CS}})
+
+(define BOB "BOB Konf")
+(define RacketCon "RacketCon")
+
+(define TA "Teaching Assistant")
+
+(define SIGPLAN "ACM SIGPLAN")
+
+
 (define (university) UMB)
 (define (sub-university) {{College of Science and Mathematics}})
 (define visr-project
   {url: "https://visr.pl"
    name: "VISr Project"})
 
-research-statement:
-@list{Leif Andersen is a postdoc doing research on programming language
-    and compiler development at
-    @university[]'s @sub-university[]. Some topics of interest include
-    Languages, Systems, and Human Computer Interaction. Specifically, she works
-    on domain-specific languages for creating hybrid textual-visual programs,
-    and leads the @hyperlink[visr-project].}
+ research-statement: @list{I am a postdoc working on programming language and
+   compiler development. Most recently, I've created and continue to maintain
+   domain-specific languages for creating hybrid textual-visual programs, and
+   lead the @hyperlink[visr-project]. Some additional topics of interest include
+   systems, multimedia, and human-computer interaction.}
 
 education: [{location: NEU
              year: [2014 2022]
              degree: {{PhD in @|CS|, emphasis on @PL}}
-             dissertation: dissertation-title
+             dissertation: dissertation
              advisor: "Matthias Felleisen"}
             {location: Utah
              degree: {{MS in @CS}}
@@ -164,7 +187,7 @@ This paper proposes a novel mechanism for conveniently extending textual program
  a unified representation using operational semantics and implement our approach
  with and A-normal form (ANF) λ-calculus for a CESK style machine in PLT
  Redex.}}
-          url: "http://homes.soic.indiana.edu/jhemann/scheme-14/papers/Jenkins2014.pdf"}
+          url: "https://github.com/LeifAndersen/website/blob/master/papers/jenkins2014abstract.pdf"}
          {title: "Multi-core Parallelization of Abstract Abstract Machines "
           author: ["Leif Andersen"
                     "Matthew Might"]
@@ -359,7 +382,11 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
             url: "https://github.com/LeifAndersen/3710_project"
             }]
 
-talks: [{title: "VISr: Visual and Interactive Syntax"
+talks: [{title: "Adding Interactive Visual Syntax to Textual Code"
+         year: 2021
+         location: OOPSLA
+         url: "https://www.youtube.com/watch?v=8htgAxJuK5c"}
+        {title: "VISr: Visual and Interactive Syntax"
          year: 2022
          location: RacketCon
          url: "https://www.youtube.com/watch?app=desktop&v=EQCsw0HTO3A"}
@@ -381,6 +408,11 @@ talks: [{title: "VISr: Visual and Interactive Syntax"
              to the hierarchies of modules found in conventional functional
              languages.}}}
 
+        {title: "Super 8 Languages for Making Movies (Functional Pearl)"
+         year: 2017
+         url: "https://www.youtube.com/watch?v=utlbWpjWcPA"
+         location: ICFP}
+
         {title: "Movies as Programs: The Story of a Racket"
          year: 2017
          location: RacketCon
@@ -392,15 +424,14 @@ talks: [{title: "VISr: Visual and Interactive Syntax"
               Racket ecosystem. It integrates into Racket from concept to final
               rendering. Come for the video demos, stay for the language tower.}}}]
 
-@(define dissertation-title
-   "Adding Visual and Interactive Syntax to Textual Programs")
-
-dissertation: {title: @dissertation-title
-               location: NEU
-               advisor: "Matthias Felleisen"
-               year: 2022
-               url: "https://www2.ccs.neu.edu/racket/pubs/#dissertation-andersen"
-               talk-url: "https://www.youtube.com/watch?v=l0GfMs82PvU"}
+@(define dissertation
+        {title: "Adding Visual and Interactive Syntax to Textual Programs"
+          location: NEU
+          advisor: "Matthias Felleisen"
+          year: 2022
+          url: "https://www2.ccs.neu.edu/racket/pubs/#dissertation-andersen"
+          talk-url: "https://www.youtube.com/watch?v=l0GfMs82PvU"})
+dissertation: dissertation
 
 service: [{title: "Long Term Mentor"
            organization: SIGPLAN
@@ -425,30 +456,6 @@ awards: [{title: "Little Fe Student Cluster Competition Pilot"
          {title: "Computer Engineering Graduating Student of the Year"
           year: 2013
           organization: "University of Utah"}]
-
-(define PL "Programming Languages")
-(define IC "International Conference")
-(define FP "Functional Programming")
-(define CS "Computer Science")
-
-(define Utah "University of Utah")
-(define NEU "Northeastern University")
-(define UMB "UMass Boston")
-
-(define SCHEME {{Scheme and Functional Programming Workshop}})
-(define PACMPL {{Proceedings of the ACM @PL}})
-(define ICFP {{@IC on @FP}})
-(define OOPSLA {{Object-Oriented Programming, Systems, Languages & Applications}})
-(define TOPLAS {{Transactions on @PL and Systems}})
-(define CC {{@IC on Compiler Construction}})
-(define LNCS {{Lecture Notes in @CS}})
-
-(define BOB "BOB Konf")
-(define RacketCon "RacketCon")
-
-(define TA "Teaching Assistant")
-
-(define SIGPLAN "ACM SIGPLAN")
 
 (define (++ . args)
   (string-join args))

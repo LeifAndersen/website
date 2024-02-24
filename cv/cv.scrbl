@@ -127,8 +127,8 @@
 \email{@(-> 'email)}
 \homepage{@(-> 'website 'name)}
 \social[github]{@(-> 'github 'name)}
-\social[twitter]{@(-> 'twitter 'name)}
-\social[mastodon]{@(-> 'mastodon 'name)}
+@;\social[twitter]{@(-> 'twitter 'name)}
+@;\social[mastodon][@(-> 'mastodon 'url)]{@(-> 'mastodon 'name)}
 \social[linkedin][@(-> 'linkedin 'url)]{@(-> 'linkedin 'name)}
 
 \begin{document}
@@ -137,7 +137,7 @@
    (cover-letter-text #t))
 
 \makecvtitle
-\section{Research Highlights}
+\section{Highlights}
 @(-> 'research-statement)
 
 @(if (-> '(positions . #f))
@@ -165,7 +165,8 @@
                       (format "Advisor: ~a" (-> i 'advisor))
                       "")}@;
                 {@(if (-> i '(dissertation . #f))
-                      (format "Dissertation: ~a" (-> i 'dissertation))
+                      @~a{Dissertation: \href{@(-> i 'dissertation 'url)}@;
+                                             {@(-> i 'dissertation 'title)}}
                       "")}}))
 
 \section{Major Software Projects}
@@ -203,8 +204,6 @@
                 {\url{@(-> i '(url . "Under Review"))}}
         \vspace{6pt}}))
 
-@(if (extended)
-     @list{
 \section{Talks}
 @(add-newlines
   (for/list ([i (in-list (dict-ref doc 'talks))])
@@ -216,6 +215,8 @@
                  {\url{@(-> i 'url)}}
         \vspace{6pt}}))
 
+@(if (extended)
+     @list{
 \section{Teaching}
 @(add-newlines
   (for/list ([i (in-list (dict-ref doc 'teaching))])
@@ -251,6 +252,7 @@
                  \vspace{6pt}}))
 } "")
 
+@(define (prof-font-size) @~a{\footnotesize})
 @(if (and (-> '(programming-languages . #f))
           (-> '(tools . #f)))
      @list{
@@ -264,38 +266,60 @@
        [`() acc]
        [`(,a)
         (cons @~a{\cvitem{}{
-           \begin{minipage}[t]{0.33\textwidth}
+           \begin{minipage}[t]{0.25\textwidth}
              \begin{itemize}
-             \item @(latex-str a)
+             \item {@(prof-font-size) @(latex-str a)}
              \end{itemize}
            \end{minipage}}} acc)]
        [`(,a ,b)
         (cons @~a{\cvitem{}{
-           \begin{minipage}[t]{0.33\textwidth}
+           \begin{minipage}[t]{0.25\textwidth}
              \begin{itemize}
-             \item @(latex-str a)
+             \item {@(prof-font-size) @(latex-str a)}
              \end{itemize}
            \end{minipage}
-           \begin{minipage}[t]{0.33\textwidth}
+           \begin{minipage}[t]{0.25\textwidth}
              \begin{itemize}
-             \item @(latex-str b)
+             \item {@(prof-font-size) @(latex-str b)}
              \end{itemize}
            \end{minipage}}} acc)]
-       [`(,a ,b ,c ,rst ...)
+       [`(,a ,b ,c)
+        (cons @~a{\cvitem{}{
+            \begin{minipage}[t]{0.25\textwidth}
+              \begin{itemize}
+              \item {@(prof-font-size) @(latex-str a)}
+              \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{0.25\textwidth}
+              \begin{itemize}
+              \item {@(prof-font-size) @(latex-str b)}
+              \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{0.25\textwidth}
+              \begin{itemize}
+              \item {@(prof-font-size) @(latex-str c)}
+              \end{itemize}
+            \end{minipage}}} acc)]
+       [`(,a ,b ,c ,d ,rst ...)
         (loop (cons @~a{\cvitem{}{
-            \begin{minipage}[t]{0.33\textwidth}
+            \begin{minipage}[t]{0.25\textwidth}
               \begin{itemize}
-              \item @(latex-str a)
+              \item {@(prof-font-size) @(latex-str a)}
               \end{itemize}
             \end{minipage}
-            \begin{minipage}[t]{0.33\textwidth}
+            \begin{minipage}[t]{0.25\textwidth}
               \begin{itemize}
-              \item @(latex-str b)
+              \item {@(prof-font-size) @(latex-str b)}
               \end{itemize}
             \end{minipage}
-            \begin{minipage}[t]{0.33\textwidth}
+            \begin{minipage}[t]{0.25\textwidth}
               \begin{itemize}
-              \item @(latex-str c)
+              \item {@(prof-font-size) @(latex-str c)}
+              \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{0.25\textwidth}
+              \begin{itemize}
+              \item {@(prof-font-size) @(latex-str d)}
               \end{itemize}
             \end{minipage}}} acc) rst)
         ]))))
@@ -310,36 +334,58 @@
         (cons @~a{\cvitem{}{
            \begin{minipage}[t]{0.33\textwidth}
              \begin{itemize}
-             \item @(latex-str a)
+             \item {@(prof-font-size) @(latex-str a)}
              \end{itemize}
            \end{minipage}}} acc)]
        [`(,a ,b)
         (cons @~a{\cvitem{}{
            \begin{minipage}[t]{0.33\textwidth}
              \begin{itemize}
-             \item @(latex-str a)
+             \item {@(prof-font-size) @(latex-str a)}
              \end{itemize}
            \end{minipage}
            \begin{minipage}[t]{0.33\textwidth}
              \begin{itemize}
-             \item @(latex-str b)
+             \item {@(prof-font-size) @(latex-str b)}
              \end{itemize}
            \end{minipage}}} acc)]
-       [`(,a ,b ,c ,rst ...)
+       [`(,a ,b ,c)
+        (cons @~a{\cvitem{}{
+            \begin{minipage}[t]{0.25\textwidth}
+              \begin{itemize}
+              \item {@(prof-font-size) @(latex-str a)}
+              \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{0.25\textwidth}
+              \begin{itemize}
+              \item {@(prof-font-size) @(latex-str b)}
+              \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{0.25\textwidth}
+              \begin{itemize}
+              \item {@(prof-font-size) @(latex-str c)}
+              \end{itemize}
+            \end{minipage}}} acc)]
+       [`(,a ,b ,c ,d ,rst ...)
         (loop (cons @~a{\cvitem{}{
-            \begin{minipage}[t]{0.33\textwidth}
+            \begin{minipage}[t]{0.25\textwidth}
               \begin{itemize}
-              \item @(latex-str a)
+              \item {@(prof-font-size) @(latex-str a)}
               \end{itemize}
             \end{minipage}
-            \begin{minipage}[t]{0.33\textwidth}
+            \begin{minipage}[t]{0.25\textwidth}
               \begin{itemize}
-              \item @(latex-str b)
+              \item {@(prof-font-size) @(latex-str b)}
               \end{itemize}
             \end{minipage}
-            \begin{minipage}[t]{0.33\textwidth}
+            \begin{minipage}[t]{0.25\textwidth}
               \begin{itemize}
-              \item @(latex-str c)
+              \item {@(prof-font-size) @(latex-str c)}
+              \end{itemize}
+            \end{minipage}
+            \begin{minipage}[t]{0.25\textwidth}
+              \begin{itemize}
+              \item {@(prof-font-size) @(latex-str d)}
               \end{itemize}
             \end{minipage}}} acc) rst)
         ]))))
