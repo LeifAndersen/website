@@ -41,6 +41,7 @@ lab: {name: (++ UMB PL)}
 (define PACMPL {{Proceedings of the ACM @PL}})
 (define ICFP {{@IC on @FP}})
 (define OOPSLA {{Object-Oriented Programming, Systems, Languages & Applications}})
+(define ARXIV {{arXiv}})
 (define TOPLAS {{Transactions on @PL and Systems}})
 (define CC {{@IC on Compiler Construction}})
 (define LNCS {{Lecture Notes in @CS}})
@@ -85,7 +86,15 @@ positions: [{location: UMB
              title: "Postdoc"
              year: [2022 "Present"]}]
 
-papers: [{title: "Adding Interactive Visual Syntax to Textual Code"
+papers: [{title: "Making Hybrid Languages: A Recipe"
+          author: ["Leif Andersen"
+                   "Cameron Moy"
+                   "Stephen Chang"
+                   "Matthias Felleisen"]
+          location: {venue: ARXIV}
+          year: 2024
+          url: "https://github.com/LeifAndersen/website/blob/master/papers/andersen2024making.pdf"}
+         {title: "Adding Interactive Visual Syntax to Textual Code"
           author: ["Leif Andersen"
                    "Michael Ballantyne"
                    "Matthias Felleisen"]
