@@ -60,11 +60,12 @@ lab: {name: (++ UMB PL)}
   {url: "https://visr.pl"
    name: "VISr Project"})
 
- research-statement: @list{I am a postdoc working on programming language and
-   compiler development. Most recently, I've created and continue to maintain
-   domain-specific languages for creating hybrid textual-visual programs, and
-   lead the @hyperlink[visr-project]. Some additional topics of interest include
-   systems, multimedia, and human-computer interaction.}
+ research-statement: @list{I am a postdoctoral research fellow and staff
+   engineer working on programming language and compiler development. Most
+   recently, I've created and continue to maintain domain-specific languages for
+   creating hybrid textual-visual programs, and lead the
+   @hyperlink[visr-project]. Some additional topics of interest include systems,
+   multimedia, and human-computer interaction.}
 
 education: [{location: NEU
              year: [2014 2022]
@@ -93,6 +94,20 @@ papers: [{title: "Making Hybrid Languages: A Recipe"
                    "Matthias Felleisen"]
           location: {venue: ARXIV}
           year: 2024
+          abstract: {{
+              The dominant programming languages support only linear text to
+              express ideas. Visual languages offer graphical representations
+              for entire programs, when viewed with special tools. Hybrid
+              languages, with support from existing tools, allow developers to
+              express their ideas with a mix of textual and graphical syntax
+              tailored to an application domain. This mix puts both kinds of
+              syntax on equal footing and, importantly, the enriched language
+              does not disrupt a programmer’s typical workflow. This paper
+              presents a recipe for equipping exist- ing textual programming
+              languages as well as accompanying IDEs with a mechanism for
+              creating and using graphical interactive syntax. It also presents
+              the first hybrid language and IDE created using the recipe.
+            }}
           url: "https://github.com/LeifAndersen/website/blob/master/papers/andersen2024making.pdf"}
          {title: "Adding Interactive Visual Syntax to Textual Code"
           author: ["Leif Andersen"
