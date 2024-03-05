@@ -260,12 +260,13 @@
 @(if (and (-> '(programming-languages . #f))
           (-> '(tools . #f)))
      @list{
-     \section{High Proficiency}
-     \subsection{Languages}
+     \section{Proficiencies}
 @(add-newlines
   (reverse
    (let loop ([acc '()]
-              [items (sort (-> 'programming-languages) string<=?)])
+              [items (sort (append (-> 'programming-languages)
+                                   (-> 'tools))
+                           string<=?)])
      (match items
        [`() acc]
        [`(,a)
@@ -355,101 +356,7 @@
               \end{itemize}
             \end{minipage}}} acc) rst)
         ]))))
-\subsection{Tools and Environments}
-@(add-newlines
-  (reverse
-   (let loop ([acc '()]
-              [items (sort (-> 'tools) string<=?)])
-     (match items
-       [`() acc]
-       [`(,a)
-        (cons @~a{\cvitem{}{
-           \begin{minipage}[t]{0.20\textwidth}
-             \begin{itemize}
-             \item {@(prof-font-size) @(latex-str a)}
-             \end{itemize}
-           \end{minipage}}} acc)]
-       [`(,a ,b)
-        (cons @~a{\cvitem{}{
-           \begin{minipage}[t]{0.20\textwidth}
-             \begin{itemize}
-             \item {@(prof-font-size) @(latex-str a)}
-             \end{itemize}
-           \end{minipage}
-           \begin{minipage}[t]{0.20\textwidth}
-             \begin{itemize}
-             \item {@(prof-font-size) @(latex-str b)}
-             \end{itemize}
-           \end{minipage}}} acc)]
-       [`(,a ,b ,c)
-        (cons @~a{\cvitem{}{
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str a)}
-              \end{itemize}
-            \end{minipage}
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str b)}
-              \end{itemize}
-            \end{minipage}
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str c)}
-              \end{itemize}
-            \end{minipage}}} acc)]
-       [`(,a ,b ,c ,d)
-        (cons @~a{\cvitem{}{
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str a)}
-              \end{itemize}
-            \end{minipage}
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str b)}
-              \end{itemize}
-            \end{minipage}
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str c)}
-              \end{itemize}
-            \end{minipage}
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str d)}
-              \end{itemize}
-            \end{minipage}}} acc)]
-       [`(,a ,b ,c ,d ,e ,rst ...)
-        (loop (cons @~a{\cvitem{}{
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str a)}
-              \end{itemize}
-            \end{minipage}
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str b)}
-              \end{itemize}
-            \end{minipage}
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str c)}
-              \end{itemize}
-            \end{minipage}
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str d)}
-              \end{itemize}
-            \end{minipage}
-            \begin{minipage}[t]{0.20\textwidth}
-              \begin{itemize}
-              \item {@(prof-font-size) @(latex-str e)}
-              \end{itemize}
-            \end{minipage}}} acc) rst)
-        ]))))
-}
-"")
+} "")
 
 @(if (-> '(references . #f))
    @list{

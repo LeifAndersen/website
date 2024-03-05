@@ -328,25 +328,30 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 but VISr also ships with elIDE, an IDE designed with VISr in
                 mind.}}
             url: "https://visr.pl"
-            contribution: [{{
-                Designed and implemented a mechanism for extending textual
-                programming languages with visual and interactive language
-                constructs.}}
-            {{Similar to notebook programming, but with the
+            contribution: [{{Designed and implemented a mechanism for extending
+                textual programming languages with notebook-style visual and
+                interactive language constructs. The resulting language has
                 semantics capable of engineering large programs.}}
-            {{Used by multiple programmers.}}]}
+                           {{Conducted user studies to verify the usability of the
+                               system on real-world problems.}}]}
            {name: "Video Programming Language"
             description: {{
  Video is a language for making movies. It combines the power of a traditional
  video editor with the capabilities of a full programming language. Video
  integrates with the Racket ecosystem and extensions for DrRacket to transform
  it into a non-linear video editor.}}
-            contribution: [{{Designed an implemented a language for making
-                videos.}}
-            {{Created an integration with the Racket and FFmpeg ecosystems.}}
-            {{Created IDE extensions for DrRacket for limited NLVE capabilities.}}
-            {{Used to record the videos for SIGPLAN conferences.}}
-            {{Used by roughly a thousand student for an introductory CS course.}}]
+            contribution: [{{Designed and implemented a programming language for
+                non-linear video editing. This allows artists to use
+                language-based composability (e.g. functions) to simplify their
+                work.}}
+            {{Integrated the Racket and FFmpeg ecosystems to develop an
+                industry grade video effects compositor and encoding library.}}
+            {{Created IDE extensions for DrRacket allowing user to mix graphical
+                and textual editing styles.}}
+            {{Used to edit and publish SIGPLAN conferences videos
+                from 2018-2020.}}
+            {{Used, as a library, for an introductory programming course by
+                roughly one thousand students.}}]
             url: "https://lang.video/"}
            {name: "S-Markup Language"
              description: {{
@@ -357,23 +362,11 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
              url: "https://github.com/LeifAndersen/racket-sml"
              contribution: [
              {{Designed and implemented a language for creating human readable
-                 NoSQL like data, similar YAML or TOML.}}
-             {{Used to demonstrate the power of Racket's metaprogramming
-                 capabilities.}}
-             {{Used to store everything from student grades, to even the
-                 creation of this CV.}}]}
-           {name: "Racket"
-            description: {{
- Racket is a general-purpose programming language as well as the world’s first
- ecosystem for developing and deploying new languages. Make your dream language,
- or use one of the dozens already available.}}
-            url: "https://racket-lang.org/"
-            contribution: [{{Served as a core contributor, including
-                participating in high level design discussions and onboarding
-                new contributors.}}
-            {{Performed initial research on self-hosted compiler.}}
-            {{Heavy use testing of macro system.}}
-            {{Creation of development tooling surrounding the language and IDE.}}]}
+                 NoSQL like data, similar to YAML or TOML.}}
+             {{Used, as a teaching aid, to demonstrate the power of Racket's
+                 metaprogramming-system to new developers.}}
+             {{Used the language to store everything from student grades to
+                 the creation of this CV.}}]}
            {name: "Nanopass Compiler Framework"
             description: {{
                 Nanopass is a DSL for compiler construction. It uses polytypic
@@ -381,12 +374,31 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 many small compiler passes, while keeping typing information
                 useful to compilers. This is the DSL that the Chez Scheme
                 Compiler uses.}}
-            contribution: [{{Create the Racket port for Nanopass.}}
-                           {{Used fork to create prototype self-hosted Racket
-                               compiler.}}
-                           {{Setup the Organizational Infrastructure for future
-                               forks and contributions to Naneopass.}}]
+            contribution: [{{Setup the Organizational Infrastructure for future
+                forks and contributions to Naneopass.}}
+                           {{Ported, feature identical, Nanopass to the Racket
+                               language.}}
+                           {{Created self-hosted Racket compiler using Nanopass
+                               fork.}}
+                           {{Conducted novel research onto pass fusion and
+                               glass-box compiling using infrastructure.}}]
             url: "http://nanopass.org/"}
+          {name: "Racket"
+            description: {{
+                Racket is a general-purpose programming language as well as the
+                world’s first ecosystem for developing and deploying new
+                languages. Make your dream language, or use one of the dozens
+                already available.}}
+            url: "https://racket-lang.org/"
+            contribution: [{{Served as a core contributor to the open-source
+                Racket project, including reviewing pull requests, addressing
+                bug reports, and onboarding new contributors.}}
+            {{Performed initial research on self-hosted compiler using Nanopass
+                framework and other possible backends.}}
+            {{Researched the practical limits of Racket's macro system, and
+                designed fixes for its shortcomings.}}
+            {{Created development tooling surrounding the language and IDE
+                infrastructure allowing users to enrich code with images.}}]}
            @;{name: "Project Proto"
             description: {{
                 This capstone project is a combined flight simulator and
