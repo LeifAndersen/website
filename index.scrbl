@@ -10,12 +10,36 @@
    @div[class: "col-sm"]{
     @h4{Email: @(-> 'email)}
     @h4{Lab: @(-> 'lab 'name)}
+    @h4{Github: @a[href: (-> 'github 'url)]{@(-> 'github 'name)}}
+    @h4{LinkedIn: @a[href: (-> 'linkedin 'url)]{@(-> 'linkedin 'name)}}
     @h4{Mastodon: @a[href: (-> 'mastodon 'url)]{@(-> 'mastodon 'name)}}
     @h4{Twitter: @a[href: (-> 'twitter 'url)]{@(-> 'twitter 'name)}}
-    @h4{Github: @a[href: (-> 'github 'url)]{@(-> 'github 'name)}}
+    @h4{BlueSky: @a[href: (-> 'bluesky 'url)]@(-> 'bluesky 'name)}
   }}
   @h2{Bio}
   @(-> 'research-statement)
+
+  @h2{Dissertation}
+  @ul[class: "list-group"]{
+    @li[class: "list-group-item"]{
+      @div[class: "container"]{
+        @div[class: "row"]{
+          @strong{Title:@nbsp}
+          @(-> 'dissertation 'title)}
+        @div[class: "row"]{
+         @a[href: @(-> 'dissertation 'url)]{[Publisher PDF]}}
+        @div[class: "row"]{
+         @div[class: "collapse-group"]{
+          @strong{Abstract:@nbsp}
+          @p[class: "collapse"
+             id: "disviewabstract"]{@(-> 'dissertation 'abstract)}
+          @a[class: "btn" data-toggle: "collapse"
+             data-target: "#disviewabstract-~a"]{
+           View...}}}
+      }
+    }
+  }
+
   @h2{Papers}
   @ul[class: "list-group"]{
     @(for/list ([i (in-list (-> 'papers))]
@@ -32,7 +56,19 @@
          @div[class: "collapse-group"]{
           @strong{Abstract:@nbsp}
           @p[class: "collapse"
-             id: (format "viewabstract-~a" id)]{@(hash-ref i 'abstract)}
+             id: (format "talkviewabstract-~a" id)]{@(hash-ref i 'abstract)}
           @a[class: "btn" data-toggle: "collapse"
-              data-target: (format "#viewabstract-~a" id)]{
-           View...}}}}})}}}
+              data-target: (format "#talkviewabstract-~a" id)]{
+          View...}}}}})}
+
+  @h2{Talks}
+  @ul[class: "list-group"]{
+    @(for/list ([i (in-list (-> 'talks))]
+                [id (in-naturals)])
+      @li[class: "list-group-item"]{
+       @div[class: "container"]{
+        @div[class: "row"]{@(hash-ref i 'title)}
+        @div[class: "row"]{
+         @a[href: @(hash-ref i 'url)]{[Watch on YouTube]}}
+        }})}
+  }}

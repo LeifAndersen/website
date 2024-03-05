@@ -12,7 +12,7 @@ address: {name: "McCormack Hall"
           state: "MA"
           zip: "02125"
           country: "USA"}
-email: "Leif.Andersen@umb.edu"
+email: {{leif - at - leif.pl}}
 phone: {type: "mobile"
         number: "NA"}
 website: {name: "leifandersen.net"
@@ -26,6 +26,8 @@ github: {name: "LeifAndersen"
          url: "https://github.com/LeifAndersen"}
 linkedin: {name: "Leif Andersen"
            url: "www.linkedin.com/in/leif-andersen-b097b62a9/"}
+bluesky: {name: "leif.pl"
+          url: "https://bsky.app/profile/leif.pl"}
 lab: {name: (++ UMB PL)}
 
 (define PL "Programming Languages")
@@ -463,6 +465,37 @@ talks: [{title: "Adding Interactive Visual Syntax to Textual Code"
 @(define dissertation
         {title: "Adding Visual and Interactive Syntax to Textual Programs"
           location: NEU
+          abstract: {{
+Many programming problems call for turning geometric thoughts into code:
+tables, hierarchical structures, nests of objects, trees, graphs, etc. Linear
+text does not do justice to such thoughts. But, it has been the dominant
+programming medium for the past and will remain so for the foreseeable
+future. While visual languages are a better medium for these thoughts, they
+lack the flexibility offered by linear text.
+
+Hybrid visual-textual languages offer the best of both worlds. Programs written
+in a hybrid language can employ visuals when appropriate, while retaining the
+flexibility of text. Previous attempts at creating hybrid media have all been
+extra-linguistic; instead of supporting visual-interactive elements as language
+constructs, these media tied programming to one specific IDE. The biggest
+downside of such approaches is that  programmers are unable to edit the textual
+portion of their programs using their preferred text editor.
+
+This dissertation presents VISr (Visual and Interactive Syntax realized), a
+technique for adding a mechanism to existing programming languages that
+empowers programmers to extend it with domain-specific, visual and interactive
+elements. It presents two such realizations: one for Racket and one for
+ClojureScript. The dissertation also introduces two IDEs that can render
+interactive syntax elements as graphical-user interfaces.  Specifically, it
+explains how to adapt DrRacket to visual-interactive syntax; and it introduces
+a new, browser-based IDE, specifically created for hybrid visual-textual
+programming: elIDE.
+
+In support of the design, this dissertation also presents evidence of the
+usefulness and usability of VISr. The evidence comes from a user-facing
+evaluation and several case-studies of programs created using
+interactive-syntax extensions, including one extended case study using
+interactive-syntax extensions for video production.}}
           advisor: "Matthias Felleisen"
           year: 2022
           url: "https://www2.ccs.neu.edu/racket/pubs/#dissertation-andersen"
