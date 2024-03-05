@@ -336,7 +336,9 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 interactive language constructs. The resulting language has
                 semantics capable of engineering large programs.}}
                            {{Conducted user studies to verify the usability of the
-                               system on real-world problems.}}]}
+                               system on real-world problems.}}
+                           {{Used to develop software crucial to two authors'
+                               self-publishing business.}}]}
            {name: "Video Programming Language"
             description: {{
  Video is a language for making movies. It combines the power of a traditional
@@ -347,7 +349,7 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 non-linear video editing. This allows artists to use
                 language-based composability (e.g. functions) to simplify their
                 work.}}
-            {{Integrated the Racket and FFmpeg ecosystems to develop an
+            {{Integrated the Racket and FFmpeg software systems to develop an
                 industry grade video effects compositor and encoding library.}}
             {{Created IDE extensions for DrRacket allowing user to mix graphical
                 and textual editing styles.}}
@@ -398,7 +400,7 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 bug reports, and onboarding new contributors.}}
             {{Performed initial research on self-hosted compiler using Nanopass
                 framework and other possible backends.}}
-            {{Researched the practical limits of Racket's macro system, and
+            {{Researched the practical limits of Racket's macro system,
                 designed fixes for its shortcomings.}}
             {{Created development tooling surrounding the language and IDE
                 infrastructure allowing users to enrich code with images.}}]}

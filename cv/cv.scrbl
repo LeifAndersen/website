@@ -102,8 +102,8 @@
 @(define (disp-year year)
    (match year
      [`(,start ,end)
-      @~a{@|start|-@|end|}]
-     [_ year]))
+      @~a{01/@|start|-01/@|end|}]
+     [_ @~a{01/year}]))
 
 @(define (final-year year)
    (match year
@@ -141,7 +141,7 @@
 @(-> 'research-statement)
 
 @(if (-> '(positions . #f))
-     @list{\section{Previous Positions}
+     @list{\section{Work History}
                    @(add-newlines
                      (for/list ([i (in-list (sort-by-year (-> 'previous-positions)))])
                        (define role
