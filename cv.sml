@@ -21,11 +21,12 @@ twitter: {name: "@LeifAndersen"
           url: "https://twitter.com/LeifAndersen"}
 mastodon: {name: "@leif@toot.leif.pl"
            url: "https://toot.leif.pl/leif"}
-matrix: {name: "@leifandersen:matrix.org"}
+matrix: {name: "@leifandersen:matrix.org"
+         url: "matrix:@leifandersen:matrix.org"}
 github: {name: "LeifAndersen"
          url: "https://github.com/LeifAndersen"}
 linkedin: {name: "Leif Andersen"
-           url: "www.linkedin.com/in/leif-andersen-b097b62a9/"}
+           url: "https://www.linkedin.com/in/leif-andersen-b097b62a9/"}
 bluesky: {name: "leif.pl"
           url: "https://bsky.app/profile/leif.pl"}
 lab: {name: (++ UMB PL)}
@@ -499,6 +500,7 @@ interactive-syntax extensions for video production.}}
           advisor: "Matthias Felleisen"
           year: 2022
           url: "https://www2.ccs.neu.edu/racket/pubs/#dissertation-andersen"
+          summary-url: "https://www.youtube.com/watch?v=8htgAxJuK5c&t=66s"
           talk-url: "https://www.youtube.com/watch?v=l0GfMs82PvU"})
 dissertation: dissertation
 

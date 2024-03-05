@@ -12,9 +12,10 @@
     @h4{Lab: @(-> 'lab 'name)}
     @h4{Github: @a[href: (-> 'github 'url)]{@(-> 'github 'name)}}
     @h4{LinkedIn: @a[href: (-> 'linkedin 'url)]{@(-> 'linkedin 'name)}}
+    @h4{Matrix: @a[href: (-> 'matrix 'url)]{@(-> 'matrix 'name)}}
     @h4{Mastodon: @a[href: (-> 'mastodon 'url)]{@(-> 'mastodon 'name)}}
     @h4{Twitter: @a[href: (-> 'twitter 'url)]{@(-> 'twitter 'name)}}
-    @h4{BlueSky: @a[href: (-> 'bluesky 'url)]@(-> 'bluesky 'name)}
+    @h4{BlueSky: @a[href: (-> 'bluesky 'url)]{@(-> 'bluesky 'name)}}
   }}
   @h2{Bio}
   @(-> 'research-statement)
@@ -27,14 +28,17 @@
           @strong{Title:@nbsp}
           @(-> 'dissertation 'title)}
         @div[class: "row"]{
-         @a[href: @(-> 'dissertation 'url)]{[Publisher PDF]}}
+         @a[style: "padding-right:0.5em;" href: @(-> 'dissertation 'url)]{[PDF]}
+         @a[style: "padding-right:0.5em;" href: @(-> 'dissertation 'summary-url)]{
+          [Summary Video]}
+         @a[href: @(-> 'dissertation 'talk-url)]{[Defence Talk]}}
         @div[class: "row"]{
          @div[class: "collapse-group"]{
           @strong{Abstract:@nbsp}
           @p[class: "collapse"
              id: "disviewabstract"]{@(-> 'dissertation 'abstract)}
           @a[class: "btn" data-toggle: "collapse"
-             data-target: "#disviewabstract-~a"]{
+             data-target: "#disviewabstract"]{
            View...}}}
       }
     }
@@ -71,4 +75,17 @@
         @div[class: "row"]{
          @a[href: @(hash-ref i 'url)]{[Watch on YouTube]}}
         }})}
+
+
+  @h2{Software}
+  @ul[class: "list-group"]{
+    @(for/list ([i (in-list (-> 'software))]
+                [id (in-naturals)])
+      @li[class: "list-group-item"]{
+       @div[class: "container"]{
+        @div[class: "row"]{@(hash-ref i 'name)}
+        @div[class: "row"]{
+         @a[href: @(hash-ref i 'url)]{[Project Homepage]}}
+        }})}
+
   }}
