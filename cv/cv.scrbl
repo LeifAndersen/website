@@ -102,8 +102,8 @@
 @(define (disp-year year)
    (match year
      [`(,start ,end)
-      @~a{01/@|start|-01/@|end|}]
-     [_ @~a{01/year}]))
+      @~a{@|start|-@|end|}]
+     [_ @~a{year}]))
 
 @(define (final-year year)
    (match year
