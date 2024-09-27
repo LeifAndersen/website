@@ -63,12 +63,11 @@ lab: {name: (++ UMB PL)}
   {url: "https://visr.pl"
    name: "VISr Project"})
 
- research-statement: @list{I am a staff software engineer working and research
-   fellow on programming language and compiler development at Radix Labs. I've
-   created and continue to maintain domain-specific languages for creating
-   hybrid textual-visual programs, and lead the @hyperlink[visr-project]. Some
-   additional topics of interest include systems, multimedia, and human-computer
-   interaction.}
+ research-statement: @list{I am a software engineer
+that works in programming languages and compiler development. I've created and
+continue to maintain domain-specific languages for making hybrid
+textual-visual programs, and lead the @hyperlink[visr-project]. Some additional
+topics of interest include systems, multimedia, and human-computer interaction.}
 
 education: [{location: NEU
              year: [2014 2022]

@@ -160,7 +160,8 @@
 @(if (-> '(positions . #f))
      @list{\section{Work History}
                    @(add-newlines
-                     (for/list ([i (in-list (sort-by-year (-> 'previous-positions)))])
+                     (for/list ([i (in-list (sort-by-year (-> 'previous-positions)))]
+                                #:unless (dict-ref i 'old #f))
                        (define role
                          @~a{@(-> i 'role)@(if (-> i '(alt-role . #f))
                                                @~a{ (@(-> i 'alt-role))}
