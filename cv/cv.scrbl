@@ -12,6 +12,7 @@
           (prefix-in cv: "../cv.sml"))
 
 @(define private-extras (make-parameter #f))
+@(define alternate-bio (make-parameter #f))
 @(define cover-letter (make-parameter #f))
 @(define cover-letter-first (make-parameter #f))
 @(define signature (make-parameter #f))
@@ -50,6 +51,8 @@
   #:once-each
   [("-p" "--private") priv "Additional (optional) private data"
                       (private-extras priv)]
+  [("-b" "--bio") bio "Alternative highlights section"
+                  (alternate-bio bio)]
   [("-c" "--cover") cover "Optional cover letter" (cover-letter cover)]
   [("-f" "--cover-first") "Put cover letter at the start of document"
                           (cover-letter-first #t)]
@@ -60,13 +63,16 @@
 
 @(define main-doc (cv:doc (lambda (data) (dict-ref data 'name))))
 @(define doc
-   (if (private-extras)
-       (let ([private-doc (dynamic-require (private-extras) 'doc)])
-         (hash-union main-doc private-doc
-                     #:combine (lambda (a b) (if (and (list? a) (list? b))
-                                                 (append a b)
-                                                 b))))
-       main-doc))
+   (let ([private-doc (if (private-extras)
+                          (dynamic-require (private-extras) 'doc)
+                          (hash))]
+         [alternate-doc (if (alternate-bio)
+                            (dynamic-require (alternate-bio) 'doc)
+                            (hash))])
+     (hash-union main-doc private-doc alternate-doc
+                 #:combine (lambda (a b) (if (and (list? a) (list? b))
+                                             (append a b)
+                                             b)))))
 
 @(define translations-table
    (hash #\& "\\&"
@@ -117,11 +123,14 @@
 @(define (sort-by-year items)
    (sort items > #:key #{final-year (dict-ref % 'year +inf.0)}))
 
-\documentclass[10pt]{moderncv}
+\documentclass{moderncv}
 \moderncvstyle{banking}
 \moderncvcolor{red}
-\usepackage[scale=0.75,top=2cm, bottom=2cm]{geometry}
+\usepackage[scale=0.80,top=1.5cm, bottom=1.8cm]{geometry}
 \usepackage{lmodern}
+\usepackage{tikz}
+
+\renewcommand{\labelitemi}{\tikz\draw[black,fill=black] (0,0) circle (.5ex);}
 
 @list|{
 \makeatletter
@@ -154,26 +163,29 @@
    (cover-letter-text #t))
 
 \makecvtitle
+\vspace{-2em}
 \section{Highlights}
-@(-> 'research-statement)
+@(-> 'bio)
 
 @(if (-> '(positions . #f))
      @list{\section{Work History}
                    @(add-newlines
-                     (for/list ([i (in-list (sort-by-year (-> 'previous-positions)))]
+                     (for/list ([i (in-list (sort-by-year (-> '(previous-positions . () ))))]
                                 #:unless (dict-ref i 'old #f))
                        (define role
                          @~a{@(-> i 'role)@(if (-> i '(alt-role . #f))
                                                @~a{ (@(-> i 'alt-role))}
                                                "")})
-                       @list{\cventry{@(disp-year (-> i 'year))}@;
+                       @list{\begin{minipage}{\textwidth}
+                             \cventry{@(disp-year (-> i 'year))}@;
                                      {@(-> i 'location)}@;
                                      {@role}@;
                                      {}@;
                                      {}@;
                                      {@(for/list ([i (in-list (-> i 'highlights))])
                                          @list{\cvlistitem{@i}})}
-                                     \vspace{6pt}}))}
+                                     \vspace{6pt}
+                             \end{minipage}}))}
      "")
 
 
@@ -194,19 +206,21 @@
 \section{Major Software Projects}
 @(add-newlines
   (for/list ([i (in-list (dict-ref doc 'software))])
-    @list{\cventry{}@;
+  @list{\begin{minipage}{\textwidth}
+          \cventry{}@;
                   {\vspace{-1.2em}}@;
                   {@(-> i 'name)}@;
                   {@(if (-> i '(url . #f))
-                        @~a{\url{@(-> i 'url)}}
-                        "")}@;
+                    @~a{\url{@(-> i 'url)}}
+                    "")}@;
                   {}@;
                   {@;\cvitem{}{@(-> i 'description)}
-                   @(if (-> i '(contribution . #f))
-                        @(add-newlines
-                          (for/list ([i (in-list (-> i 'contribution))])
-                            @list{\cvlistitem{@i}}))
-                        "")}
+                    @(if (-> i '(contribution . #f))
+                    @(add-newlines
+                      (for/list ([i (in-list (-> i 'contribution))])
+                        @list{\cvlistitem{@i}}))
+                      "")}
+          \end{minipage}
           \vspace{6pt}}))
 
 \section{Publications}
@@ -229,24 +243,28 @@
 \section{Talks}
 @(add-newlines
   (for/list ([i (in-list (sort-by-year (-> 'talks)))])
-    @~a{\cventry {@(-> i 'year)}@;
+    @~a{\begin{minipage}{\textwidth}
+      \cventry {@(-> i 'year)}@;
                  {\vspace{-1.2em}}@;{@(-> i 'location)}@;
                  {@(-> i 'title)}@;
                  {}@;
                  {}@;
-                 {\url{@(-> i 'url)}}}))
+                 {\url{@(-> i 'url)}}
+             \end{minipage}}))
 
 @(define (prof-font-size) @~a{\footnotesize})
 @(if (and (-> '(programming-languages . #f))
           (-> '(tools . #f)))
      @list{
        \section{Proficiencies}
+       \begin{minipage}{\textwidth}
        {@prof-font-size
         \cvitem{}{
           @(let ([items (sort (append (-> 'programming-languages)
                                       (-> 'tools))
                               string<=?)])
-             (string-join (map latex-str items) ", "))}}}
+             (string-join (map latex-str items) ", "))}}
+       \end{minipage}}
      "")
 
 @(if (-> '(references . #f))

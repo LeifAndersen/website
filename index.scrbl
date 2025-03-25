@@ -18,7 +18,7 @@
     @h4{BlueSky: @a[href: (-> 'bluesky 'url)]{@(-> 'bluesky 'name)}}
   }}
   @h2{Bio}
-  @(-> 'research-statement)
+  @(-> 'bio)
 
   @h2{Dissertation}
   @ul[class: "list-group"]{

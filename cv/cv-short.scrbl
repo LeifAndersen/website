@@ -11,7 +11,10 @@
           gregor
           (prefix-in cv: "../cv.sml"))
 
+@(define cutoff-year 2023)
+
 @(define private-extras (make-parameter #f))
+@(define alternate-bio (make-parameter #f))
 @(define cover-letter (make-parameter #f))
 @(define cover-letter-first (make-parameter #f))
 @(define signature (make-parameter #f))
@@ -50,6 +53,8 @@
   #:once-each
   [("-p" "--private") priv "Additional (optional) private data"
                       (private-extras priv)]
+  [("-b" "--bio") bio "Alternative highlights section"
+                         (alternate-bio bio)]
   [("-c" "--cover") cover "Optional cover letter" (cover-letter cover)]
   [("-f" "--cover-first") "Put cover letter at the start of document"
                           (cover-letter-first #t)]
@@ -60,13 +65,16 @@
 
 @(define main-doc (cv:doc (lambda (data) (dict-ref data 'name))))
 @(define doc
-   (if (private-extras)
-       (let ([private-doc (dynamic-require (private-extras) 'doc)])
-         (hash-union main-doc private-doc
-                     #:combine (lambda (a b) (if (and (list? a) (list? b))
-                                                 (append a b)
-                                                 b))))
-       main-doc))
+   (let ([private-doc (if (private-extras)
+                          (dynamic-require (private-extras) 'doc)
+                          (hash))]
+         [alternate-doc (if (alternate-bio)
+                            (dynamic-require (alternate-bio) 'doc)
+                            (hash))])
+     (hash-union main-doc private-doc alternate-doc
+                 #:combine (lambda (a b) (if (and (list? a) (list? b))
+                                             (append a b)
+                                             b)))))
 
 @(define translations-table
    (hash #\& "\\&"
@@ -120,7 +128,20 @@
 \documentclass[10pt]{moderncv}
 \moderncvstyle{banking}
 \moderncvcolor{red}
-\usepackage[scale=0.75,top=2cm, bottom=2cm]{geometry}
+\usepackage[scale=0.85,top=1cm, bottom=1cm]{geometry}
+\usepackage{lmodern}
+
+@list|{
+\makeatletter
+\ifcase \@ptsize \relax% 10pt
+  \newcommand{\miniscule}{\@setfontsize\miniscule{4}{5}}% \tiny: 5/6
+\or% 11pt
+  \newcommand{\miniscule}{\@setfontsize\miniscule{5}{6}}% \tiny: 6/7
+\or% 12pt
+  \newcommand{\miniscule}{\@setfontsize\miniscule{5}{6}}% \tiny: 6/7
+\fi
+\makeatother
+}|
 
 \name{@(-> 'name 'first)}{@(-> 'name 'last)}
 \address{@(-> 'address 'street)}%
@@ -141,35 +162,25 @@
    (cover-letter-text #t))
 
 \makecvtitle
+\vspace{-3em}
 \section{Highlights}
 @(-> 'bio)
 
-\section{Education}
-@(add-newlines
-  (for/list ([i (in-list (dict-ref doc 'education))])
-    @~a{\cventry{@(disp-year (-> i 'year))}@;
-                {@(-> i 'location)}@;
-                {@(-> i 'degree)}{}@;
-                {@(if (-> i '(advisor . #f))
-                      (format "Advisor: ~a" (-> i 'advisor))
-                      "")}@;
-                {@(if (-> i '(dissertation . #f))
-                      @~a{Dissertation: \href{@(-> i 'dissertation 'url)}@;
-                                        {@(-> i 'dissertation 'title)}}
-                      "")}}))
-
 @(if (-> '(positions . #f))
-     @list{\section{Work History}
+     @list{\section{(Recent) Work History}
                    @(add-newlines
-                     (for/list ([i (in-list (sort-by-year (-> 'previous-positions)))])
+                     (for/list ([i (in-list (sort-by-year (-> '(previous-positions . ()))))]
+                                #:unless (or (dict-ref i 'old #f)
+                                             (< (final-year (-> i 'year))
+                                                cutoff-year)))
                        (define role
                          @~a{@(-> i 'role)@(if (-> i '(alt-role . #f))
                                                @~a{ (@(-> i 'alt-role))}
                                                "")})
-                       @list{\cventry{@(disp-year (-> i 'year))}@;
-                                     {@(-> i 'location)}@;
-                                     {@role}@;
-                                     {}@;
+                       @list{\cventry{}@;
+                                     {\vspace{-1.2em}}@;
+                                     {@role (@(-> i 'location))}@;
+                                     {@(disp-year (-> i 'year))}@;
                                      {}@;
                                      {@(for/list ([i (in-list (-> i 'highlights))])
                                          @list{\cvlistitem{@i}})}
@@ -177,46 +188,7 @@
      "")
 
 
-\section{Publications}
-\cventry{@(-> 'dissertation 'year)}@;
-        {@(-> 'dissertation 'location)}
-        {\emph{Dissertation:} @(-> 'dissertation 'title)}@;
-        {}@;
-        {Advisor: @(-> 'dissertation 'advisor)}@;
-        {\url{@(-> 'dissertation 'url)}}
-\subsection{}
-@(add-newlines
-  (for/list ([i (in-list (sort-by-year (-> 'papers)))])
-    @~a{\cventry{@(-> i '(year . "Under Review"))}@;
-                {@(-> i 'location 'venue)}@;
-                {@(-> i 'title)}@;
-                {}@;
-                {}@;
-                {\url{@(-> i '(url . "Under Review"))}}}))
-
-\section{Talks}
-@(add-newlines
-  (for/list ([i (in-list (sort-by-year (-> 'talks)))])
-    @~a{\cventry {@(-> i 'year)}@;
-                 {@(-> i 'location)}@;
-                 {@(-> i 'title)}@;
-                 {}@;
-                 {}@;
-                 {\url{@(-> i 'url)}}}))
-
-\section{Teaching}
-@(add-newlines
-  (for/list ([i (in-list (dict-ref doc 'teaching))])
-    @~a{\cventry{@(if (-> i '(semester . #f))
-                      @~a{@(-> i 'semester) @(-> i 'year)}
-                      (-> i 'year))}@;
-                {@(-> i 'location)}@;
-                {@(-> i 'name)}@;
-                {}@;
-                {}@;
-                {}}))
-
-\section{Major Software Projects}
+\section{Major (Open Source) Software Projects}
 @(add-newlines
   (for/list ([i (in-list (dict-ref doc 'software))])
     @list{\cventry{}@;
@@ -232,45 +204,23 @@
                           (for/list ([i (in-list (-> i 'contribution))])
                             @list{\cvlistitem{@i}}))
                         "")}
-                  \vspace{6pt}}))
+          \vspace{6pt}}))
 
-\section{Service}
+@;{
+\section{Education}
 @(add-newlines
-  (for/list ([i (in-list (dict-ref doc 'service))])
-    @~a{\cventry {@(disp-year (-> i 'year))}@;
-                 {@(-> i 'organization)}@;
-                 {@(-> i 'title)}@;
-                 {}@;
-                 {}@;
-                 {}
-        \vspace{6pt}}))
+  (for/list ([i (in-list (dict-ref doc 'education))])
+    @~a{\cventry{@(disp-year (-> i 'year))}@;
+                {@(-> i 'location)}@;
+                {@(-> i 'degree)}{}@;
+                {@(if (-> i '(advisor . #f))
+                      (format "Advisor: ~a" (-> i 'advisor))
+                      "")}@;
+                {@(if (-> i '(dissertation . #f))
+                      @~a{Dissertation: \href{@(-> i 'dissertation 'url)}@;
+                                        {@(-> i 'dissertation 'title)}}
+                      "")}}))
 
-\section{Awards}
-@(add-newlines
-  (for/list ([i (in-list (sort-by-year (-> 'awards)))])
-    @~a{\cventry {@(disp-year (-> i 'year))}@;
-                 {@(-> i 'organization)}@;
-                 {@(-> i 'title)}@;
-                 {}@;
-                 {@(-> i '(position . ""))}@;
-                 {}
-                 \vspace{6pt}}))
-
-@(if (-> '(references . #f))
-   @list{
-     \section{References}
-     @(add-newlines
-       (for/list ([i (in-list (-> 'references))])
-         @~a{\cventry {}@;
-                      {@(-> i 'role)}@;
-                      {@(-> i 'name)}@;
-                      {}@;
-                      {}@;
-                      {\href{mailto:@(-> i 'email)}{@(-> i 'email)}}
-                      \vspace{6pt}}))}
-   "")
-
-@(when (and (cover-letter) (not (cover-letter-first)))
-  (cover-letter-text #f))
+}
 
 \end{document}

@@ -63,7 +63,7 @@ lab: {name: (++ UMB PL)}
   {url: "https://visr.pl"
    name: "VISr Project"})
 
- research-statement: @list{I am a software engineer
+ bio: @list{I am a software engineer
 that works in programming languages and compiler development. I've created and
 continue to maintain domain-specific languages for making hybrid
 textual-visual programs, and lead the @hyperlink[visr-project]. Some additional
@@ -78,7 +78,8 @@ education: [{location: NEU
              degree: {{MS in @CS}}
              year: [2012 2014]}
             {location: Utah
-             degree: {{BS in @CS and Computer Engineering}}
+             ;degree: {{BS in @CS and Computer Engineering}}
+             degree: {{BS in @CS}}
              year: [2009 2014]}
             @;{location: Utah
              degree: "BS in Computer Engineering"
@@ -378,7 +379,7 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 many small compiler passes, while keeping typing information
                 useful to compilers. This is the DSL that the Chez Scheme
                 Compiler uses.}}
-            contribution: [{{Setup the Organizational Infrastructure for future
+            contribution: [{{Setup the organizational infrastructure for future
                 forks and contributions to Naneopass.}}
                            {{Ported, feature identical, Nanopass to the Racket
                                language.}}
