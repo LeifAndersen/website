@@ -89,6 +89,13 @@
           (for/list ([i (in-string str)])
             (dict-ref table i (λ () (string i))))))
 
+
+@(define (strip-https str)
+   (match str
+     [(regexp "https://(.*)" (list _ s)) s]
+     [(regexp "http://(.*)" (list _ s)) s]
+     [_ str]))
+
 @(define (-> #:table [trans-table translations-table] . path)
    (define-values (start path*)
      (if (and (pair? path) (dict? (car path)))
@@ -155,7 +162,7 @@
 \social[github]{@(-> 'github 'name)}
 @;\social[twitter]{@(-> 'twitter 'name)}
 @;\social[mastodon][@(-> 'mastodon 'url)]{@(-> 'mastodon 'name)}
-\social[linkedin][@(-> 'linkedin 'url)]{@(-> 'linkedin 'name)}
+\social[linkedin][@(strip-https (-> 'linkedin 'url))]{@(-> 'linkedin 'name)}
 
 \begin{document}
 
@@ -223,34 +230,26 @@
           \end{minipage}
           \vspace{6pt}}))
 
-\section{Publications}
+\section{Publications/Talks}
 \cventry{@(-> 'dissertation 'year)}@;
         {@(-> 'dissertation 'location)}
-        {\emph{Dissertation:} @(-> 'dissertation 'title)}@;
+        {\href{@(-> 'dissertation 'url)}{\emph{Dissertation:} @(-> 'dissertation 'title)}}@;
         {}@;
         {Advisor: @(-> 'dissertation 'advisor)}@;
-        {\url{@(-> 'dissertation 'url)}}
+        {}
 \subsection{}
-@(add-newlines
-  (for/list ([i (in-list (sort-by-year (-> 'papers)))])
-    @~a{\cventry{@(-> i '(year . "Under Review"))}@;
-                {\vspace{-1.2em}}@;{@(-> i 'location 'venue)}@;
-                {@(-> i 'title)}@;
-                {}@;
-                {}@;
-                {\url{@(-> i '(url . "Under Review"))}}}))
 
-\section{Talks}
+@(define talks
+   (for/list ([i (-> 'talks)])
+     (dict-set i 'title @~a{\emph{Talk:} @(dict-ref i 'title)})))
 @(add-newlines
-  (for/list ([i (in-list (sort-by-year (-> 'talks)))])
-    @~a{\begin{minipage}{\textwidth}
-      \cventry {@(-> i 'year)}@;
-                 {\vspace{-1.2em}}@;{@(-> i 'location)}@;
-                 {@(-> i 'title)}@;
-                 {}@;
-                 {}@;
-                 {\url{@(-> i 'url)}}
-             \end{minipage}}))
+  (for/list ([i (in-list (sort-by-year (append (-> 'papers) talks)))])
+    @~a{\cventry{}@;
+                {\vspace{-1.2em}}@;{@(-> i 'location 'venue)}@;
+                {\href{@(-> i 'url)}{@(-> i 'title)}}@;
+                {{\normalfont \emph{@(-> i '(year . "Under Review"))}}}@;
+                {}@;
+                {}}))
 
 @(define (prof-font-size) @~a{\footnotesize})
 @(if (and (-> '(programming-languages . #f))
