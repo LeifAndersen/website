@@ -29,12 +29,15 @@ linkedin: {name: "Leif Andersen"
            url: "https://www.linkedin.com/in/leif-andersen-b097b62a9/"}
 bluesky: {name: "leif.pl"
           url: "https://bsky.app/profile/leif.pl"}
-lab: {name: (++ UMB PL)}
+kaggle: {name: "leifaandersen"
+         url: "https://www.kaggle.com/leifaandersen"
+lab: {name: NA}
 
 (define PL "Programming Languages")
 (define IC "International Conference")
 (define FP "Functional Programming")
 (define CS "Computer Science")
+(define NA "N/A")
 
 (define Utah "University of Utah")
 (define NEU "Northeastern University")
