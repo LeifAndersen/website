@@ -137,6 +137,8 @@
 \usepackage{lmodern}
 \usepackage{tikz}
 
+\definecolor{color2}{rgb}{0.07, 0.04, 1} 
+
 \renewcommand{\labelitemi}{\tikz\draw[black,fill=black] (0,0) circle (.5ex);}
 
 @list|{
@@ -152,14 +154,16 @@
 }|
 
 \name{@(-> 'name 'first)}{@(-> 'name 'last)}
-\address{@(-> 'address 'street)}%
+\address{\textcolor{black}{@(-> 'address 'city), @(-> 'address 'state)}}
+@;{\address{@(-> 'address 'street)}%
         {@(format "~a, ~a, ~a"
                   (-> 'address 'city) (-> 'address 'state) (-> 'address 'zip))}%
         {@(-> 'address 'country)}
+        }
 \phone[@(-> 'phone 'type)]{@(-> 'phone 'number)}
 \email{@(-> 'email)}
-\homepage{@(-> 'website 'name)}
-\social[github]{@(-> 'github 'name)}
+@;\homepage{@(-> 'website 'name)}
+@;\social[github]{@(-> 'github 'name)}
 @;\social[twitter]{@(-> 'twitter 'name)}
 @;\social[mastodon][@(-> 'mastodon 'url)]{@(-> 'mastodon 'name)}
 \social[linkedin][@(strip-https (-> 'linkedin 'url))]{@(-> 'linkedin 'name)}
@@ -190,7 +194,7 @@
                                      {}@;
                                      {}@;
                                      {@(for/list ([i (in-list (-> i 'highlights))])
-                                         @list{\cvlistitem{@i}})}
+                                         @list{\hspace{1em}\cvlistitem{@i}})}
                                      \vspace{6pt}
                              \end{minipage}}))}
      "")
@@ -225,15 +229,16 @@
                     @(if (-> i '(contribution . #f))
                     @(add-newlines
                       (for/list ([i (in-list (-> i 'contribution))])
-                        @list{\cvlistitem{@i}}))
+                        @list{\hspace{1em}\cvlistitem{@i}}))
                       "")}
           \end{minipage}
+
           \vspace{6pt}}))
 
 \section{Publications/Talks}
 \cventry{@(-> 'dissertation 'year)}@;
         {@(-> 'dissertation 'location)}
-        {\href{@(-> 'dissertation 'url)}{\emph{Dissertation:} @(-> 'dissertation 'title)}}@;
+        {\href{@(-> 'dissertation 'url)}{\textcolor{color2}{\emph{Dissertation:} @(-> 'dissertation 'title)}}}@;
         {}@;
         {Advisor: @(-> 'dissertation 'advisor)}@;
         {}
@@ -246,7 +251,7 @@
   (for/list ([i (in-list (sort-by-year (append (-> 'papers) talks)))])
     @~a{\cventry{}@;
                 {\vspace{-1.2em}}@;{@(-> i 'location 'venue)}@;
-                {\href{@(-> i 'url)}{@(-> i 'title)}}@;
+                {\href{@(-> i 'url)}{\textcolor{color2}{@(-> i 'title)}}}@;
                 {{\normalfont \emph{@(-> i '(year . "Under Review"))}}}@;
                 {}@;
                 {}}))

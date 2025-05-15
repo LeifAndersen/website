@@ -30,8 +30,10 @@ linkedin: {name: "Leif Andersen"
 bluesky: {name: "leif.pl"
           url: "https://bsky.app/profile/leif.pl"}
 kaggle: {name: "leifaandersen"
-         url: "https://www.kaggle.com/leifaandersen"
+         url: "https://www.kaggle.com/leifaandersen"}
 lab: {name: NA}
+discord: {name: "LeifAndersen"
+          url: "https://discord.com/users/userid"}
 
 (define PL "Programming Languages")
 (define IC "International Conference")
