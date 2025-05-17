@@ -13,7 +13,6 @@
     @h4{Github: @a[href: (-> 'github 'url)]{@(-> 'github 'name)}}
     @h4{LinkedIn: @a[href: (-> 'linkedin 'url)]{@(-> 'linkedin 'name)}}
     @h4{Matrix: @a[href: (-> 'matrix 'url)]{@(-> 'matrix 'name)}}
-    @h4{Mastodon: @a[href: (-> 'mastodon 'url)]{@(-> 'mastodon 'name)}}
     @;@h4{Twitter: @a[href: (-> 'twitter 'url)]{@(-> 'twitter 'name)}}
     @h4{Bluesky: @a[href: (-> 'bluesky 'url)]{@(-> 'bluesky 'name)}}
     @h4{Discord: @a[href: (-> 'discord 'url)]{@(-> 'discord 'name)}}
