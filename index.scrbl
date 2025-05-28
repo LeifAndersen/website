@@ -88,5 +88,4 @@
         @div[class: "row"]{
          @a[href: @(hash-ref i 'url)]{[Project Homepage]}}
         }})}
-
   }}
