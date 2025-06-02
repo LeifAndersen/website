@@ -507,7 +507,7 @@ interactive-syntax extensions for video production.}}
           advisor: "Matthias Felleisen"
           year: 2022
           url: "https://www2.ccs.neu.edu/racket/pubs/#dissertation-andersen"
-          summary-url: "https://www.youtube.com/watch?v=8htgAxJuK5c&t=66s"
+          summary-url: "https://www.youtube.com/watch?v=8htgAxJuK5c"
           talk-url: "https://www.youtube.com/watch?v=l0GfMs82PvU"})
 dissertation: dissertation
 
