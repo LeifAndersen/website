@@ -235,7 +235,7 @@
 
           \vspace{6pt}}))
 
-\section{Publications/Talks}
+\section{Publications/Talks/Competitions}
 \cventry{@(-> 'dissertation 'year)}@;
         {@(-> 'dissertation 'location)}
         {\href{@(-> 'dissertation 'url)}{\textcolor{color2}{\emph{Dissertation:} @(-> 'dissertation 'title)}}}@;
@@ -244,11 +244,18 @@
         {}
 \subsection{}
 
+@(define pubs
+   (for/list ([i (-> 'papers)])
+     (dict-set i 'title @~a{\emph{Publication:} @(dict-ref i 'title)})))
 @(define talks
    (for/list ([i (-> 'talks)])
      (dict-set i 'title @~a{\emph{Talk:} @(dict-ref i 'title)})))
+@(define competitions
+   (for/list ([i (-> '(competitions . ()))])
+     (dict-set i 'title @~a{\emph{Competition:} @(dict-ref i 'title)})))
+
 @(add-newlines
-  (for/list ([i (in-list (sort-by-year (append (-> 'papers) talks)))])
+  (for/list ([i (in-list (sort-by-year (append pubs talks competitions)))])
     @~a{\cventry{}@;
                 {\vspace{-1.2em}}@;{@(-> i 'location 'venue)}@;
                 {\href{@(-> i 'url)}{\textcolor{color2}{@(-> i 'title)}}}@;

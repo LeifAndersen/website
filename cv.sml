@@ -470,6 +470,19 @@ talks: [{title: "Adding Interactive Visual Syntax to Textual Code"
               Racket ecosystem. It integrates into Racket from concept to final
               rendering. Come for the video demos, stay for the language tower.}}}]
 
+competitions: [{title: "Halite by Two Sigma"
+                year: 2022
+                url: "https://www.kaggle.com/competitions/halite-iv-playground-edition"}
+               {title: "Predicting Stock Trends: Rise or Fall?"
+                year: 2025
+                url: "https://www.kaggle.com/competitions/predicting-stock-trends-rise-or-fall"}
+               {title: "PremiumPulse Challenge: Predicting Financial Risk"
+                year: 2025
+                url: "https://www.kaggle.com/competitions/premiumpulse-risk-modeling"}
+               {title: "Drawing with LLMs"
+                year: 2025
+                url: "https://www.kaggle.com/competitions/drawing-with-llms"}]
+
 @(define dissertation
         {title: "Adding Visual and Interactive Syntax to Textual Programs"
           location: NEU
