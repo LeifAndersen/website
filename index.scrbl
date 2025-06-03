@@ -17,9 +17,10 @@
     @h4{Bluesky: @a[href: (-> 'bluesky 'url)]{@(-> 'bluesky 'name)}}
     @h4{Discord: @a[href: (-> 'discord 'url)]{@(-> 'discord 'name)}}
     @h4{Kaggle: @a[href: (-> 'kaggle 'url)]{@(-> 'kaggle 'name)}}
-  }}
-  @h2{Bio}
-  @(-> 'bio)
+    @p{}
+    @h2{Bio}
+    @(-> 'bio)
+    }}
 
   @h2{Dissertation}
   @ul[class: "list-group"]{
