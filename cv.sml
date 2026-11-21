@@ -173,7 +173,7 @@ This paper proposes a novel mechanism for conveniently extending textual program
              than expected. To address this issue, we introduce
              feature-specific profiling, a technique that reports
              performance costs in terms of linguistic constructs.
-             Festure-specific profilers help programmers find expensive uses of
+             Feature-specific profilers help programmers find expensive uses of
              specific features of their language. We describe the architecture
              of a profiler that implements our approach, explain prototypes of
              the profiler for two languages with different characteristics and
@@ -385,7 +385,7 @@ software: [{name: "Visual and Interactive Syntax realized for ClojureScript"
                 useful to compilers. This is the DSL that the Chez Scheme
                 Compiler uses.}}
             contribution: [{{Setup the organizational infrastructure for future
-                forks and contributions to Naneopass.}}
+                forks and contributions to Nanopass.}}
                            {{Ported, feature identical, Nanopass to the Racket
                                language.}}
                            {{Created self-hosted Racket compiler using Nanopass
@@ -470,6 +470,7 @@ talks: [{title: "Adding Interactive Visual Syntax to Textual Code"
               Racket ecosystem. It integrates into Racket from concept to final
               rendering. Come for the video demos, stay for the language tower.}}}]
 
+@;{
 competitions: [{title: "Halite by Two Sigma"
                 year: 2022
                 url: "https://www.kaggle.com/competitions/halite-iv-playground-edition"}
@@ -482,6 +483,7 @@ competitions: [{title: "Halite by Two Sigma"
                {title: "Drawing with LLMs"
                 year: 2025
                 url: "https://www.kaggle.com/competitions/drawing-with-llms"}]
+}
 
 @(define dissertation
         {title: "Adding Visual and Interactive Syntax to Textual Programs"
@@ -526,7 +528,7 @@ dissertation: dissertation
 
 service: [{title: "Long Term Mentor"
            organization: SIGPLAN
-           year: [2020 "Present"]}
+           year: [2020 2023]}
           {title: "PC Member"
            organization: "Scheme Workshop"
            year: 2023}

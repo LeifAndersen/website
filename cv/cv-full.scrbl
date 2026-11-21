@@ -103,6 +103,8 @@
    (match year
      [`(,start ,end)
       @~a{@|start|-@|end|}]
+     [`(,start)
+      @~a{@|start|-Present}]
      [_ @~a{@year}]))
 
 @(define (final-year year)
@@ -121,12 +123,18 @@
 \moderncvstyle{banking}
 \moderncvcolor{red}
 \usepackage[scale=0.75,top=2cm, bottom=2cm]{geometry}
+\usepackage{lmodern}
+\usepackage{tikz}
+
+@;{\definecolor{color2}{rgb}{0.07, 0.04, 1} }
+
+\renewcommand{\labelitemi}{\tikz\draw[black,fill=black] (0,0) circle (.5ex);}
 
 \name{@(-> 'name 'first)}{@(-> 'name 'last)}
 \address{@(-> 'address 'street)}%
-        {@(format "~a, ~a, ~a"
-                  (-> 'address 'city) (-> 'address 'state) (-> 'address 'zip))}%
-        {@(-> 'address 'country)}
+{@(format "~a, ~a, ~a"
+          (-> 'address 'city) (-> 'address 'state) (-> 'address 'zip))}%
+{@(-> 'address 'country)}
 \phone[@(-> 'phone 'type)]{@(-> 'phone 'number)}
 \email{@(-> 'email)}
 \homepage{@(-> 'website 'name)}
@@ -194,6 +202,7 @@
                 {}@;
                 {\url{@(-> i '(url . "Under Review"))}}}))
 
+\vspace{1em}
 \section{Talks}
 @(add-newlines
   (for/list ([i (in-list (sort-by-year (-> 'talks)))])
@@ -216,6 +225,7 @@
                 {}@;
                 {}}))
 
+\vspace{2em}
 \section{Major Software Projects}
 @(add-newlines
   (for/list ([i (in-list (dict-ref doc 'software))])
@@ -232,7 +242,7 @@
                           (for/list ([i (in-list (-> i 'contribution))])
                             @list{\cvlistitem{@i}}))
                         "")}
-                  \vspace{6pt}}))
+                  \vspace{8pt}}))
 
 \section{Service}
 @(add-newlines
